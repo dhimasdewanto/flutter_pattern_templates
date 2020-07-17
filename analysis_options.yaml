@@ -1,0 +1,18 @@
+include: package:lint/analysis_options.yaml
+
+linter:
+  rules:
+    parameter_assignments: true
+    avoid_single_cascade_in_expression_statements: false
+
+analyzer:
+  exclude:
+    - '**.g.dart'
+    - '**.gr.dart'
+    - '**.freezed.dart'
+    
+  errors:
+    missing_required_param: error
+    parameter_assignments: error
+    missing_return: error
+    must_be_immutable: error
