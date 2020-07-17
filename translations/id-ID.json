@@ -1,4 +1,6 @@
 {
     "welcome": "Selamat Datang",
-    "hello_world": "Halo Dunia!"
+    "hello_world": "Halo Dunia!",
+    "settings": "Pengaturan",
+    "language": "Bahasa"
 }

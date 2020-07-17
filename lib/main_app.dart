@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'core/configs/env.dart';
 import 'core/configs/secret_reader.dart';
 import 'core/injections/injection.dart';
+import 'core/translations/list_locales.dart';
 import 'flutter_app.dart';
 
 Future<void> mainApp(Env env) async {
@@ -20,10 +21,7 @@ Future<void> mainApp(Env env) async {
   runApp(
     EasyLocalization(
       path: "translations",
-      supportedLocales: const [
-        Locale('en', 'US'),
-        Locale('id', 'ID'),
-      ],
+      supportedLocales: ListLocales.locales,
       child: FlutterApp(),
     ),
   );

@@ -3,5 +3,7 @@
 abstract class  LocaleKeys {
   static const welcome = 'welcome';
   static const hello_world = 'hello_world';
+  static const settings = 'settings';
+  static const language = 'language';
 
 }

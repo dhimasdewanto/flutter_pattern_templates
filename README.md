@@ -32,7 +32,7 @@ Collection of best pattern and architecture for Flutter.
         "key": "ctrl+alt+l",
         "command": "command-runner.run",
         "args": {
-            "command": "flutter pub run easy_localization:generate -s translations -f keys -O lib/core/generated_languages -o locale_keys.g.dart"
+            "command": "flutter pub run easy_localization:generate -s translations -f keys -O lib/core/translations -o locale_keys.g.dart"
         }
     }
 ]
