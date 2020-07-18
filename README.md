@@ -37,3 +37,43 @@ Collection of best pattern and architecture for Flutter.
     }
 ]
 ```
+
+## VSCode Launch Configuration
+
+```json
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Flutter Dev Debug",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_dev.dart"
+    },
+    {
+      "name": "Flutter Prod Debug",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_prod.dart"
+    },
+    {
+      "name": "Flutter Dev Profile",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_dev.dart",
+      "flutterMode": "profile"
+    },
+    {
+      "name": "Flutter Prod Profile",
+      "type": "dart",
+      "request": "launch",
+      "program": "lib/main_prod.dart",
+      "flutterMode": "profile"
+    }
+  ]
+}
+
+```

@@ -6,9 +6,17 @@ import 'core/configs/app_settings.dart';
 import 'core/routes/router.gr.dart';
 
 class FlutterApp extends StatelessWidget {
+  const FlutterApp({
+    Key key,
+    @required this.theme,
+  }) : super(key: key);
+
+  final ThemeData theme;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: theme,
       locale: context.locale,
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,

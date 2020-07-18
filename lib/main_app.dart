@@ -17,12 +17,16 @@ Future<void> mainApp(Env env) async {
   // Configure dependency injection.
   configureDependencies(env);
 
+  final theme = ThemeData(
+    primarySwatch: env == Env.prod ? Colors.red : Colors.blue,
+  );
+
   // Run Flutter App.
   runApp(
     EasyLocalization(
       path: "translations",
       supportedLocales: ListLocales.locales,
-      child: FlutterApp(),
+      child: FlutterApp(theme: theme),
     ),
   );
 }
