@@ -1,10 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pattern_templates/core/configs/secret_reader.dart';
 import 'package:flutter_pattern_templates/core/routes/router.gr.dart';
-
-import '../../../core/configs/secret_reader.dart';
-import '../../../core/translations/locale_keys.g.dart';
+import 'package:flutter_pattern_templates/core/translations/locale_keys.g.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
@@ -33,6 +32,12 @@ class HomePage extends StatelessWidget {
               style: Theme.of(context).textTheme.headline5,
             ),
             Text("App Key = ${SecretReader.appKey}"),
+            RaisedButton(
+              onPressed: () {
+                ExtendedNavigator.of(context).pushNamed(Routes.notesPage);
+              },
+              child: Text(LocaleKeys.notes.tr()),
+            )
           ],
         ),
       ),

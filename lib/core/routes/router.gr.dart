@@ -7,15 +7,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_pattern_templates/features/presentation/pages/home_page.dart';
-import 'package:flutter_pattern_templates/features/presentation/pages/settings_page.dart';
+import 'package:flutter_pattern_templates/features/home/presentation/pages/home_page.dart';
+import 'package:flutter_pattern_templates/features/settings/presentation/pages/settings_page.dart';
+import 'package:flutter_pattern_templates/features/notes/presentation/pages/notes_page.dart';
 
 class Routes {
   static const String homePage = '/';
   static const String settingsPage = '/settings-page';
+  static const String notesPage = '/notes-page';
   static const all = <String>{
     homePage,
     settingsPage,
+    notesPage,
   };
 }
 
@@ -25,6 +28,7 @@ class Router extends RouterBase {
   final _routes = <RouteDef>[
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.settingsPage, page: SettingsPage),
+    RouteDef(Routes.notesPage, page: NotesPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -42,6 +46,14 @@ class Router extends RouterBase {
           orElse: () => SettingsPageArguments());
       return MaterialPageRoute<dynamic>(
         builder: (context) => SettingsPage(key: args.key),
+        settings: data,
+      );
+    },
+    NotesPage: (RouteData data) {
+      var args =
+          data.getArgs<NotesPageArguments>(orElse: () => NotesPageArguments());
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => NotesPage(key: args.key),
         settings: data,
       );
     },
@@ -68,6 +80,14 @@ extension RouterNavigationHelperMethods on ExtendedNavigatorState {
         Routes.settingsPage,
         arguments: SettingsPageArguments(key: key),
       );
+
+  Future<dynamic> pushNotesPage({
+    Key key,
+  }) =>
+      pushNamed<dynamic>(
+        Routes.notesPage,
+        arguments: NotesPageArguments(key: key),
+      );
 }
 
 // *************************************************************************
@@ -84,4 +104,10 @@ class HomePageArguments {
 class SettingsPageArguments {
   final Key key;
   SettingsPageArguments({this.key});
+}
+
+//NotesPage arguments holder class
+class NotesPageArguments {
+  final Key key;
+  NotesPageArguments({this.key});
 }

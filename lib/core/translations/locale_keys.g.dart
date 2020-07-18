@@ -5,5 +5,6 @@ abstract class  LocaleKeys {
   static const hello_world = 'hello_world';
   static const settings = 'settings';
   static const language = 'language';
+  static const notes = 'notes';
 
 }

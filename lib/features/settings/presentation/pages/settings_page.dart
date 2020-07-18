@@ -1,7 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import '../../../core/translations/list_locales.dart';
-import '../../../core/translations/locale_keys.g.dart';
+import 'package:flutter_pattern_templates/core/translations/list_locales.dart';
+import 'package:flutter_pattern_templates/core/translations/locale_keys.g.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key key}) : super(key: key);
