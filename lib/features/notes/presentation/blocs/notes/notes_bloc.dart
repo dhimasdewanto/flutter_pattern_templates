@@ -4,12 +4,14 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/repositories/notes_repo.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
 part 'notes_bloc.freezed.dart';
 part 'notes_event.dart';
 part 'notes_state.dart';
 
+@injectable
 class NotesBloc extends Bloc<NotesEvent, NotesState> {
   NotesBloc({
     @required this.notesRepo,

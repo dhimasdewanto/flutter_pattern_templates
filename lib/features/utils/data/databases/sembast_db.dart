@@ -1,9 +1,11 @@
 import 'package:flutter_pattern_templates/core/configs/app_settings.dart';
+import 'package:injectable/injectable.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
+@singleton
 class SembastDB {
   Database _database;
   Future<Database> get database async {
