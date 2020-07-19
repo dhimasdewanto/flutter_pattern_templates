@@ -11,9 +11,25 @@ class NotesView extends StatelessWidget {
     return Column(
       children: <Widget>[
         Expanded(
-          child: BlocBuilder<NotesBloc, NotesState>(
+          child: BlocConsumer<NotesBloc, NotesState>(
+            listener: (context, state) {
+              state.when(
+                (listNotes) {},
+                error: (message) {
+                  final snackbar = SnackBar(content: Text(message));
+                  Scaffold.of(context).showSnackBar(snackbar);
+                },
+              );
+            },
+            buildWhen: (previous, current) {
+              return current.maybeWhen(
+                (listNotes) => true,
+                error: (message) => false,
+                orElse: () => true,
+              );
+            },
             builder: (context, state) {
-              return state.when(
+              return state.maybeWhen(
                 (listNotes) {
                   return ListView.builder(
                     itemCount: listNotes.length,
@@ -35,7 +51,7 @@ class NotesView extends StatelessWidget {
                     },
                   );
                 },
-                error: (message) => const Offstage(),
+                orElse: () => const Offstage(),
               );
             },
           ),
