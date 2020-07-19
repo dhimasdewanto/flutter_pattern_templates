@@ -9,6 +9,7 @@ import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes
 import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_local_source.dart';
 import 'package:flutter_pattern_templates/features/notes/data/repositories/notes_repo_data.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/repositories/notes_repo.dart';
+import 'package:flutter_pattern_templates/features/notes/domain/use_cases/add_note.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/use_cases/get_list_notes.dart';
 import 'package:flutter_pattern_templates/features/notes/presentation/blocs/notes/notes_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -18,6 +19,7 @@ void $initGetIt(GetIt g, {String environment}) {
       () => NotesLocalSourceImpl(sembastDB: g<SembastDB>()));
   g.registerLazySingleton<NotesRepo>(
       () => NotesRepoData(localSource: g<NotesLocalSource>()));
+  g.registerLazySingleton<AddNote>(() => AddNote(notesRepo: g<NotesRepo>()));
   g.registerLazySingleton<GetListNotes>(
       () => GetListNotes(notesRepo: g<NotesRepo>()));
   g.registerFactory<NotesBloc>(
