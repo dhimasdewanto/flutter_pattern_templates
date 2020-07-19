@@ -54,6 +54,9 @@ dependencies:
   # Injectable is a convenient code generator for get_it.
   injectable: ^0.4.0+1
 
+  # For testing purposes.
+  mockito: ^4.1.1
+
   # NoSQL persistent store database solution for single process io applications.
   sembast: ^2.4.7+4
 

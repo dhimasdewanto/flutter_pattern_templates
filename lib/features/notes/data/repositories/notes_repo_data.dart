@@ -1,42 +1,49 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_local_source.dart';
+import 'package:flutter_pattern_templates/features/notes/data/models/note_model.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
+import 'package:flutter_pattern_templates/features/notes/domain/failures/notes_failures.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/repositories/notes_repo.dart';
-import 'package:flutter_pattern_templates/features/utils/data/databases/sembast_db.dart';
 import 'package:injectable/injectable.dart';
-import 'package:sembast/sembast.dart';
 
 @LazySingleton(as: NotesRepo)
 class NotesRepoData implements NotesRepo {
   NotesRepoData({
-    @required this.sembastDB,
+    @required this.localSource,
   });
 
-  final SembastDB sembastDB;
-
-  final _store = intMapStoreFactory.store("notes");
+  final NotesLocalSource localSource;
 
   @override
-  Future<List<Note>> getListNotes() async {
-    final db = await sembastDB.database;
-    final record = await _store.find(db);
-    return record.map((snapshot) {
-      final fruit = Note.fromMap(snapshot.value);
-      // An ID is a key of a record from the database.
-      fruit.id = snapshot.key;
-      return fruit;
-    }).toList();
+  Future<Either<NotesFailures, List<Note>>> getListNotes() async {
+    try {
+      final source = await localSource.getAll();
+      final listNotes =
+          source.map((noteModel) => noteModel.toDomain()).toList();
+      return right(listNotes);
+    } catch (e) {
+      return left(const NotesFailures.unexpected());
+    }
   }
 
   @override
-  Future<void> addNote(Note newNote) async {
-    final db = await sembastDB.database;
-    await _store.add(db, newNote.toMap());
+  Future<Either<NotesFailures, Unit>> addNote(Note newNote) async {
+    try {
+      await localSource.insert(NoteModel.fromDomain(newNote));
+      return right(unit);
+    } catch (e) {
+      return left(const NotesFailures.unexpected());
+    }
   }
 
   @override
-  Future<void> deleteNote(Note deletedNote) async {
-    final db = await sembastDB.database;
-    final finder = Finder(filter: Filter.byKey(deletedNote.id));
-    await _store.delete(db, finder: finder);
+  Future<Either<NotesFailures, Unit>> deleteNote(Note deletedNote) async {
+    try {
+      await localSource.delete(NoteModel.fromDomain(deletedNote));
+      return right(unit);
+    } catch (e) {
+      return left(const NotesFailures.unexpected());
+    }
   }
 }
