@@ -408,22 +408,47 @@ class _$NotesStateTearOff {
       listNotes: listNotes,
     );
   }
+
+// ignore: unused_element
+  _ErrorNotesState error({String message = ''}) {
+    return _ErrorNotesState(
+      message: message,
+    );
+  }
 }
 
 // ignore: unused_element
 const $NotesState = _$NotesStateTearOff();
 
 mixin _$NotesState {
-  List<Note> get listNotes;
-
-  $NotesStateCopyWith<NotesState> get copyWith;
+  @optionalTypeArgs
+  Result when<Result extends Object>(
+    Result $default(List<Note> listNotes), {
+    @required Result error(String message),
+  });
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>(
+    Result $default(List<Note> listNotes), {
+    Result error(String message),
+    @required Result orElse(),
+  });
+  @optionalTypeArgs
+  Result map<Result extends Object>(
+    Result $default(_NoteState value), {
+    @required Result error(_ErrorNotesState value),
+  });
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>(
+    Result $default(_NoteState value), {
+    Result error(_ErrorNotesState value),
+    @required Result orElse(),
+  });
 }
 
 abstract class $NotesStateCopyWith<$Res> {
   factory $NotesStateCopyWith(
           NotesState value, $Res Function(NotesState) then) =
       _$NotesStateCopyWithImpl<$Res>;
-  $Res call({List<Note> listNotes});
 }
 
 class _$NotesStateCopyWithImpl<$Res> implements $NotesStateCopyWith<$Res> {
@@ -432,23 +457,12 @@ class _$NotesStateCopyWithImpl<$Res> implements $NotesStateCopyWith<$Res> {
   final NotesState _value;
   // ignore: unused_field
   final $Res Function(NotesState) _then;
-
-  @override
-  $Res call({
-    Object listNotes = freezed,
-  }) {
-    return _then(_value.copyWith(
-      listNotes:
-          listNotes == freezed ? _value.listNotes : listNotes as List<Note>,
-    ));
-  }
 }
 
-abstract class _$NoteStateCopyWith<$Res> implements $NotesStateCopyWith<$Res> {
+abstract class _$NoteStateCopyWith<$Res> {
   factory _$NoteStateCopyWith(
           _NoteState value, $Res Function(_NoteState) then) =
       __$NoteStateCopyWithImpl<$Res>;
-  @override
   $Res call({List<Note> listNotes});
 }
 
@@ -498,13 +512,174 @@ class _$_NoteState implements _NoteState {
   @override
   _$NoteStateCopyWith<_NoteState> get copyWith =>
       __$NoteStateCopyWithImpl<_NoteState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>(
+    Result $default(List<Note> listNotes), {
+    @required Result error(String message),
+  }) {
+    assert($default != null);
+    assert(error != null);
+    return $default(listNotes);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>(
+    Result $default(List<Note> listNotes), {
+    Result error(String message),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if ($default != null) {
+      return $default(listNotes);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>(
+    Result $default(_NoteState value), {
+    @required Result error(_ErrorNotesState value),
+  }) {
+    assert($default != null);
+    assert(error != null);
+    return $default(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>(
+    Result $default(_NoteState value), {
+    Result error(_ErrorNotesState value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if ($default != null) {
+      return $default(this);
+    }
+    return orElse();
+  }
 }
 
 abstract class _NoteState implements NotesState {
   const factory _NoteState({@required List<Note> listNotes}) = _$_NoteState;
 
-  @override
   List<Note> get listNotes;
-  @override
   _$NoteStateCopyWith<_NoteState> get copyWith;
+}
+
+abstract class _$ErrorNotesStateCopyWith<$Res> {
+  factory _$ErrorNotesStateCopyWith(
+          _ErrorNotesState value, $Res Function(_ErrorNotesState) then) =
+      __$ErrorNotesStateCopyWithImpl<$Res>;
+  $Res call({String message});
+}
+
+class __$ErrorNotesStateCopyWithImpl<$Res>
+    extends _$NotesStateCopyWithImpl<$Res>
+    implements _$ErrorNotesStateCopyWith<$Res> {
+  __$ErrorNotesStateCopyWithImpl(
+      _ErrorNotesState _value, $Res Function(_ErrorNotesState) _then)
+      : super(_value, (v) => _then(v as _ErrorNotesState));
+
+  @override
+  _ErrorNotesState get _value => super._value as _ErrorNotesState;
+
+  @override
+  $Res call({
+    Object message = freezed,
+  }) {
+    return _then(_ErrorNotesState(
+      message: message == freezed ? _value.message : message as String,
+    ));
+  }
+}
+
+class _$_ErrorNotesState implements _ErrorNotesState {
+  const _$_ErrorNotesState({this.message = ''}) : assert(message != null);
+
+  @JsonKey(defaultValue: '')
+  @override
+  final String message;
+
+  @override
+  String toString() {
+    return 'NotesState.error(message: $message)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ErrorNotesState &&
+            (identical(other.message, message) ||
+                const DeepCollectionEquality().equals(other.message, message)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(message);
+
+  @override
+  _$ErrorNotesStateCopyWith<_ErrorNotesState> get copyWith =>
+      __$ErrorNotesStateCopyWithImpl<_ErrorNotesState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  Result when<Result extends Object>(
+    Result $default(List<Note> listNotes), {
+    @required Result error(String message),
+  }) {
+    assert($default != null);
+    assert(error != null);
+    return error(message);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeWhen<Result extends Object>(
+    Result $default(List<Note> listNotes), {
+    Result error(String message),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (error != null) {
+      return error(message);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  Result map<Result extends Object>(
+    Result $default(_NoteState value), {
+    @required Result error(_ErrorNotesState value),
+  }) {
+    assert($default != null);
+    assert(error != null);
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  Result maybeMap<Result extends Object>(
+    Result $default(_NoteState value), {
+    Result error(_ErrorNotesState value),
+    @required Result orElse(),
+  }) {
+    assert(orElse != null);
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ErrorNotesState implements NotesState {
+  const factory _ErrorNotesState({String message}) = _$_ErrorNotesState;
+
+  String get message;
+  _$ErrorNotesStateCopyWith<_ErrorNotesState> get copyWith;
 }

@@ -13,24 +13,29 @@ class NotesView extends StatelessWidget {
         Expanded(
           child: BlocBuilder<NotesBloc, NotesState>(
             builder: (context, state) {
-              return ListView.builder(
-                itemCount: state.listNotes.length,
-                itemBuilder: (context, index) {
-                  final note = state.listNotes[index];
-                  return ListTile(
-                    title: Text(note.body),
-                    trailing: IconButton(
-                      icon: Icon(Icons.delete),
-                      onPressed: () {
-                        context.bloc<NotesBloc>().add(
-                              NotesEvent.remove(
-                                note: note,
-                              ),
-                            );
-                      },
-                    ),
+              return state.when(
+                (listNotes) {
+                  return ListView.builder(
+                    itemCount: listNotes.length,
+                    itemBuilder: (context, index) {
+                      final note = listNotes[index];
+                      return ListTile(
+                        title: Text(note.body),
+                        trailing: IconButton(
+                          icon: Icon(Icons.delete),
+                          onPressed: () {
+                            context.bloc<NotesBloc>().add(
+                                  NotesEvent.remove(
+                                    note: note,
+                                  ),
+                                );
+                          },
+                        ),
+                      );
+                    },
                   );
                 },
+                error: (message) => const Offstage(),
               );
             },
           ),
