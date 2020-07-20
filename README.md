@@ -4,10 +4,10 @@ Collection of best pattern and architecture for Flutter.
 
 ---
 
-- [VSCode Better Shortcuts] (#vscode-better-shortcuts)
-- [VSCode Launch Configuration] (#vscode-launch-configuration)
+- [VSCode Better Shortcuts](#vscode-better-shortcuts)
+- [VSCode Launch Configuration](#vscode-launch-configuration)
 
-## VSCode Better Shortcuts
+### VSCode Better Shortcuts
 
 1. Install [Command Runner](https://marketplace.visualstudio.com/items?itemName=edonet.vscode-command-runner)
 
@@ -43,7 +43,7 @@ Collection of best pattern and architecture for Flutter.
 ]
 ```
 
-## VSCode Launch Configuration
+### VSCode Launch Configuration
 
 1. Create .vscode folder in root folder, then create launch.json
 
