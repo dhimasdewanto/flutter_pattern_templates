@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
               onPressed: () {
                 ExtendedNavigator.of(context).pushNamed(Routes.newsPage);
               },
-              child: const Text("News"),
+              child: Text(LocaleKeys.news.tr()),
             ),
           ],
         ),

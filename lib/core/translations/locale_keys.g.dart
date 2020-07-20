@@ -7,5 +7,6 @@ abstract class  LocaleKeys {
   static const language = 'language';
   static const notes = 'notes';
   static const body = 'body';
+  static const news = 'news';
 
 }

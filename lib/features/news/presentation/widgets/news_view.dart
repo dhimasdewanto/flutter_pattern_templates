@@ -22,7 +22,10 @@ class NewsView extends StatelessWidget {
             );
           },
           show: (listArticles) {
-            return ListView.builder(
+            return ListView.separated(
+              separatorBuilder: (context, index) {
+                return const Divider();
+              },
               itemCount: listArticles.length,
               itemBuilder: (context, index) {
                 final article = listArticles[index];

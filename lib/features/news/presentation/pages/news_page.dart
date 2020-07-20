@@ -1,9 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pattern_templates/core/injections/injection.dart';
-import 'package:flutter_pattern_templates/features/news/presentation/widgets/news_view.dart';
 
+import '../../../../core/injections/injection.dart';
+import '../../../../core/translations/locale_keys.g.dart';
 import '../../presentation/blocs/news/news_bloc.dart';
+import '../widgets/news_view.dart';
 
 class NewsPage extends StatelessWidget {
   const NewsPage({Key key}) : super(key: key);
@@ -12,7 +14,7 @@ class NewsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("News"),
+        title: Text(LocaleKeys.news.tr()),
       ),
       body: BlocProvider<NewsBloc>(
         create: (context) => getIt<NewsBloc>()..add(const NewsEvent.load()),
