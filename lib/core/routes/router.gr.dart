@@ -10,15 +10,18 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter_pattern_templates/features/home/presentation/pages/home_page.dart';
 import 'package:flutter_pattern_templates/features/settings/presentation/pages/settings_page.dart';
 import 'package:flutter_pattern_templates/features/notes/presentation/pages/notes_page.dart';
+import 'package:flutter_pattern_templates/features/news/presentation/pages/news_page.dart';
 
 class Routes {
   static const String homePage = '/';
   static const String settingsPage = '/settings-page';
   static const String notesPage = '/notes-page';
+  static const String newsPage = '/news-page';
   static const all = <String>{
     homePage,
     settingsPage,
     notesPage,
+    newsPage,
   };
 }
 
@@ -29,6 +32,7 @@ class Router extends RouterBase {
     RouteDef(Routes.homePage, page: HomePage),
     RouteDef(Routes.settingsPage, page: SettingsPage),
     RouteDef(Routes.notesPage, page: NotesPage),
+    RouteDef(Routes.newsPage, page: NewsPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -54,6 +58,14 @@ class Router extends RouterBase {
           data.getArgs<NotesPageArguments>(orElse: () => NotesPageArguments());
       return MaterialPageRoute<dynamic>(
         builder: (context) => NotesPage(key: args.key),
+        settings: data,
+      );
+    },
+    NewsPage: (RouteData data) {
+      var args =
+          data.getArgs<NewsPageArguments>(orElse: () => NewsPageArguments());
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => NewsPage(key: args.key),
         settings: data,
       );
     },
@@ -88,6 +100,14 @@ extension RouterNavigationHelperMethods on ExtendedNavigatorState {
         Routes.notesPage,
         arguments: NotesPageArguments(key: key),
       );
+
+  Future<dynamic> pushNewsPage({
+    Key key,
+  }) =>
+      pushNamed<dynamic>(
+        Routes.newsPage,
+        arguments: NewsPageArguments(key: key),
+      );
 }
 
 // *************************************************************************
@@ -110,4 +130,10 @@ class SettingsPageArguments {
 class NotesPageArguments {
   final Key key;
   NotesPageArguments({this.key});
+}
+
+//NewsPage arguments holder class
+class NewsPageArguments {
+  final Key key;
+  NewsPageArguments({this.key});
 }

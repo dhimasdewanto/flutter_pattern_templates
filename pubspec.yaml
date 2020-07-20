@@ -54,6 +54,9 @@ dependencies:
   # Injectable is a convenient code generator for get_it.
   injectable: ^0.4.0+1
 
+  # Annotation for json_serializable.
+  json_annotation: ^3.0.1
+
   # For testing purposes.
   mockito: ^4.1.1
 
@@ -79,6 +82,9 @@ dev_dependencies:
 
   # Generator of injectable.
   injectable_generator: ^0.4.1
+
+  # Convert model to map, etc.
+  json_serializable: ^3.3.0
 
   # Is a hand-picked, open-source, community-driven collection of lint rules for Dart and Flutter projects.
   # This package can be used as a replacement for pedantic for those who prefer stricter rules.
