@@ -1,7 +1,7 @@
-import 'package:flutter_pattern_templates/features/news/domain/entities/article.dart';
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
+import '../../domain/entities/article.dart';
 import 'source_model.dart';
 
 part 'article_model.g.dart';

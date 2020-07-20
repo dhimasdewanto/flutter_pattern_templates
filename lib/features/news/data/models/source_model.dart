@@ -1,4 +1,4 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:meta/meta.dart';
 
 part 'source_model.g.dart';

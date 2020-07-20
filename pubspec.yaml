@@ -28,6 +28,9 @@ dependencies:
   # where everything needed for navigation is automatically generated for you.
   auto_route: ^0.6.1
 
+  # Allows Flutter apps to discover network connectivity and configure themselves accordingly.
+  connectivity: ^0.4.9
+
   # Functional programming in Dart.
   dartz: ^0.9.1
 
@@ -53,9 +56,6 @@ dependencies:
 
   # Injectable is a convenient code generator for get_it.
   injectable: ^0.4.0+1
-
-  # Annotation for json_serializable.
-  json_annotation: ^3.0.1
 
   # For testing purposes.
   mockito: ^4.1.1
