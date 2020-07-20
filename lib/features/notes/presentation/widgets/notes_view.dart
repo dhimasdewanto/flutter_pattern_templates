@@ -13,8 +13,8 @@ class NotesView extends StatelessWidget {
         Expanded(
           child: BlocConsumer<NotesBloc, NotesState>(
             listener: (context, state) {
-              state.when(
-                (listNotes) {},
+              state.maybeWhen(
+                orElse: () {},
                 error: (message) {
                   final snackbar = SnackBar(content: Text(message));
                   Scaffold.of(context).showSnackBar(snackbar);
@@ -23,14 +23,14 @@ class NotesView extends StatelessWidget {
             },
             buildWhen: (previous, current) {
               return current.maybeWhen(
-                (listNotes) => true,
-                error: (message) => false,
                 orElse: () => true,
+                error: (message) => false,
               );
             },
             builder: (context, state) {
               return state.maybeWhen(
-                (listNotes) {
+                orElse: () => const Offstage(),
+                show: (listNotes) {
                   return ListView.builder(
                     itemCount: listNotes.length,
                     itemBuilder: (context, index) {
@@ -51,7 +51,6 @@ class NotesView extends StatelessWidget {
                     },
                   );
                 },
-                orElse: () => const Offstage(),
               );
             },
           ),

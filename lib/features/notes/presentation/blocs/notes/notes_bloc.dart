@@ -18,7 +18,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     @required this.getListNotes,
     @required this.addNote,
     @required this.deleteNote,
-  }) : super(NotesState.initial());
+  }) : super(const NotesState.initial());
 
   final GetListNotes getListNotes;
   final AddNote addNote;
@@ -68,7 +68,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
       (failure) => const NotesState.error(
         message: "Unexpected error",
       ),
-      (listNotes) => NotesState(
+      (listNotes) => NotesState.show(
         listNotes: listNotes,
       ),
     );
