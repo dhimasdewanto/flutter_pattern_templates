@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pattern_templates/core/translations/locale_keys.g.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
 import 'package:flutter_pattern_templates/features/notes/presentation/blocs/notes/notes_bloc.dart';
 
@@ -58,8 +60,8 @@ class NotesView extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(20.0),
           child: TextField(
-            decoration: const InputDecoration(
-              labelText: "Body",
+            decoration: InputDecoration(
+              labelText: LocaleKeys.body.tr(),
             ),
             onSubmitted: (value) {
               context.bloc<NotesBloc>().add(

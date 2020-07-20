@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_pattern_templates/core/databases/sembast_db.dart';
 import 'package:flutter_pattern_templates/features/notes/data/models/note_model.dart';
-import 'package:flutter_pattern_templates/features/utils/data/databases/sembast_db.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
 

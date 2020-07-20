@@ -3,5 +3,6 @@
     "hello_world": "Hello World!",
     "settings": "Settings",
     "language": "Language",
-    "notes": "Notes"
+    "notes": "Notes",
+    "body": "Body"
 }

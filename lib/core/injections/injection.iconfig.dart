@@ -6,7 +6,7 @@
 
 import 'package:flutter_pattern_templates/core/injections/register_modules.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_pattern_templates/features/utils/data/databases/sembast_db.dart';
+import 'package:flutter_pattern_templates/core/databases/sembast_db.dart';
 import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_local_source_impl.dart';
 import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_local_source.dart';
 import 'package:flutter_pattern_templates/features/notes/data/repositories/notes_repo_data.dart';
