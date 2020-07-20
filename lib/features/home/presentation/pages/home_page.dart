@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              ExtendedNavigator.of(context).pushNamed(Routes.settingsPage);
+              ExtendedNavigator.of(context).pushSettingsPage();
             },
           ),
         ],
@@ -34,13 +34,13 @@ class HomePage extends StatelessWidget {
             Text("App Key = ${SecretReader.appKey}"),
             RaisedButton(
               onPressed: () {
-                ExtendedNavigator.of(context).pushNamed(Routes.notesPage);
+                ExtendedNavigator.of(context).pushNotesPage();
               },
               child: Text(LocaleKeys.notes.tr()),
             ),
             RaisedButton(
               onPressed: () {
-                ExtendedNavigator.of(context).pushNamed(Routes.newsPage);
+                ExtendedNavigator.of(context).pushNewsPage();
               },
               child: Text(LocaleKeys.news.tr()),
             ),
