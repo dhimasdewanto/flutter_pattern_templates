@@ -4,6 +4,8 @@
 // InjectableConfigGenerator
 // **************************************************************************
 
+import 'package:flutter_pattern_templates/core/injections/register_modules.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_pattern_templates/features/utils/data/databases/sembast_db.dart';
 import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_local_source_impl.dart';
 import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_local_source.dart';
@@ -16,6 +18,9 @@ import 'package:flutter_pattern_templates/features/notes/presentation/blocs/note
 import 'package:get_it/get_it.dart';
 
 void $initGetIt(GetIt g, {String environment}) {
+  final registerModules = _$RegisterModules();
+  g.registerLazySingleton<Dio>(() => registerModules.dio);
+  g.registerLazySingleton<SembastDB>(() => SembastDB());
   g.registerLazySingleton<NotesLocalSource>(
       () => NotesLocalSourceImpl(sembastDB: g<SembastDB>()));
   g.registerLazySingleton<NotesRepo>(
@@ -30,7 +35,6 @@ void $initGetIt(GetIt g, {String environment}) {
         addNote: g<AddNote>(),
         deleteNote: g<DeleteNote>(),
       ));
-
-  //Eager singletons must be registered in the right order
-  g.registerSingleton<SembastDB>(SembastDB());
 }
+
+class _$RegisterModules extends RegisterModules {}
