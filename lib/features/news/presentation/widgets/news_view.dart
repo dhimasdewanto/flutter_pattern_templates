@@ -23,6 +23,7 @@ class NewsView extends StatelessWidget {
           },
           show: (listArticles) {
             return ListView.separated(
+              padding: const EdgeInsets.all(20.0),
               separatorBuilder: (context, index) {
                 return const Divider();
               },

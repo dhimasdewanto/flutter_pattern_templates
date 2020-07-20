@@ -1,10 +1,12 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pattern_templates/core/injections/injection.dart';
-import 'package:flutter_pattern_templates/core/translations/locale_keys.g.dart';
-import 'package:flutter_pattern_templates/features/notes/presentation/blocs/notes/notes_bloc.dart';
-import 'package:flutter_pattern_templates/features/notes/presentation/widgets/notes_view.dart';
+
+import '../../../../core/injections/injection.dart';
+import '../../../../core/translations/locale_keys.g.dart';
+import '../../../utils/presentation/widgets/my_app_bar.dart';
+import '../blocs/notes/notes_bloc.dart';
+import '../widgets/notes_view.dart';
 
 class NotesPage extends StatelessWidget {
   const NotesPage({Key key}) : super(key: key);
@@ -17,8 +19,8 @@ class NotesPage extends StatelessWidget {
           const NotesEvent.load(),
         ),
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(LocaleKeys.notes.tr()),
+        appBar: MyAppBar(
+          textTitle: tr(LocaleKeys.notes),
         ),
         body: const NotesView(),
       ),

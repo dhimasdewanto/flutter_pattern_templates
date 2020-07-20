@@ -61,7 +61,7 @@ class NotesView extends StatelessWidget {
           padding: const EdgeInsets.all(20.0),
           child: TextField(
             decoration: InputDecoration(
-              labelText: LocaleKeys.body.tr(),
+              labelText: tr(LocaleKeys.body),
             ),
             onSubmitted: (value) {
               context.bloc<NotesBloc>().add(
