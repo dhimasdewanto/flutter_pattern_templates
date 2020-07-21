@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pattern_templates/core/translations/list_locales.dart';
-import 'package:flutter_pattern_templates/core/translations/locale_keys.g.dart';
-import 'package:flutter_pattern_templates/features/utils/presentation/widgets/my_app_bar.dart';
+
+import '../../../../core/translations/list_locales.dart';
+import '../../../../core/translations/locale_keys.g.dart';
+import '../../../utils/presentation/widgets/my_app_bar.dart';
+import '../../data/translations/settings_locales.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key key}) : super(key: key);
@@ -22,7 +24,9 @@ class SettingsPage extends StatelessWidget {
             items: ListLocales.locales.map((locale) {
               return DropdownMenuItem<Locale>(
                 value: locale,
-                child: Text(locale.toLanguageTag()),
+                child: Text(
+                  SettingsLocales.getLanguageText(locale),
+                ),
               );
             }).toList(),
             onChanged: (value) {
