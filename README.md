@@ -4,8 +4,28 @@ Collection of best pattern and architecture for Flutter.
 
 ---
 
+- [Add Secret Keys](#add-secret-keys)
 - [VSCode Better Shortcuts](#vscode-better-shortcuts)
 - [VSCode Launch Configuration](#vscode-launch-configuration)
+
+### Add Secret Keys
+
+---
+
+1. Create `configs` folder in root folder (if doesnt's exist)
+
+2. Create `secrets.json`
+
+3. Add this code as an example:
+
+```json
+{
+    "app_key": "XXXXXX-XXXXXXX-XXXXXX",
+    "news_api_key": "xxxxxxxxxxxxxxxxxxxxxxxxxx"
+}
+```
+
+4. Don't forget to add your keys in `secret_reader.dart`
 
 ### VSCode Better Shortcuts
 
@@ -13,7 +33,7 @@ Collection of best pattern and architecture for Flutter.
 
 1. Install [Command Runner](https://marketplace.visualstudio.com/items?itemName=edonet.vscode-command-runner)
 
-2. Go to File > Preferences > Keyboard Shortcuts
+2. Go to `File > Preferences > Keyboard Shortcuts`
 
 3. Click Open Keyboard Shortcuts (top right button)
 
