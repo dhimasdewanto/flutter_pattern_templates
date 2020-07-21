@@ -5,5 +5,6 @@ part 'news_failures.freezed.dart';
 
 @freezed
 abstract class NewsFailures with _$NewsFailures implements IFailure {
+  const factory NewsFailures.invalidPage() = _InvalidPage;
   const factory NewsFailures.unexpected() = _Unexpected;
 }

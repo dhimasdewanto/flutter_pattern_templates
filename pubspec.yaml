@@ -48,6 +48,9 @@ dependencies:
   # They exist for one reason: increase the code-sharing between widgets by removing duplicates.
   flutter_hooks: ^0.12.0
 
+  # Infinite scrolll for Flutter.
+  flutter_pagewise: ^1.2.3
+
   # Annotation for package freezed.
   freezed_annotation: ^0.11.0
 

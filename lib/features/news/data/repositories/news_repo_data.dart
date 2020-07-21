@@ -15,9 +15,11 @@ class NewsRepoData implements NewsRepo {
   final NewsNetworkSource newsNetworkSource;
 
   @override
-  Future<Either<NewsFailures, List<Article>>> getTopHeadlines() async {
+  Future<Either<NewsFailures, List<Article>>> getTopHeadlines({
+    int page,
+  }) async {
     try {
-      final listModels = await newsNetworkSource.getTopHeadlines();
+      final listModels = await newsNetworkSource.getTopHeadlines(page: page);
       final listArticles = listModels.map((model) => model.toDomain()).toList();
       return right(listArticles);
     } catch (e) {

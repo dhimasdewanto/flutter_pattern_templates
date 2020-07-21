@@ -1,8 +1,9 @@
 import 'package:dio/dio.dart';
-import 'package:meta/meta.dart';
-import 'package:flutter_pattern_templates/features/news/data/models/article_model.dart';
 import 'package:injectable/injectable.dart';
+import 'package:meta/meta.dart';
 
+import '../../../../core/configs/app_settings.dart';
+import '../models/article_model.dart';
 import 'news_network_source.dart';
 
 @LazySingleton(as: NewsNetworkSource)
@@ -14,9 +15,13 @@ class NewsNetworkSourceImpl implements NewsNetworkSource {
   final Dio dio;
 
   @override
-  Future<List<ArticleModel>> getTopHeadlines() async {
+  Future<List<ArticleModel>> getTopHeadlines({
+    int page = 1,
+  }) async {
     final params = {
       "country": "id",
+      "page": page,
+      "pageSize": AppSettings.pageSize,
     };
     final response = await dio.get(
       "/top-headlines",
