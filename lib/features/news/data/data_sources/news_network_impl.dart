@@ -4,11 +4,11 @@ import 'package:meta/meta.dart';
 
 import '../../../../core/configs/app_settings.dart';
 import '../models/article_model.dart';
-import 'news_network_source.dart';
+import 'news_network.dart';
 
-@LazySingleton(as: NewsNetworkSource)
-class NewsNetworkSourceImpl implements NewsNetworkSource {
-  NewsNetworkSourceImpl({
+@LazySingleton(as: NewsNetwork)
+class NewsNetworkImpl implements NewsNetwork {
+  NewsNetworkImpl({
     @required this.dio,
   });
 

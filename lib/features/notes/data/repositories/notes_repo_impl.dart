@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_local_source.dart';
+import 'package:flutter_pattern_templates/features/notes/data/data_sources/notes_dao.dart';
 import 'package:flutter_pattern_templates/features/notes/data/models/note_model.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/failures/notes_failures.dart';
@@ -8,12 +8,12 @@ import 'package:flutter_pattern_templates/features/notes/domain/repositories/not
 import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: NotesRepo)
-class NotesRepoData implements NotesRepo {
-  NotesRepoData({
+class NotesRepoImpl implements NotesRepo {
+  NotesRepoImpl({
     @required this.localSource,
   });
 
-  final NotesLocalSource localSource;
+  final NotesDao localSource;
 
   @override
   Future<Either<NotesFailures, List<Note>>> getListNotes() async {

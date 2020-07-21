@@ -4,11 +4,11 @@ import 'package:flutter_pattern_templates/features/notes/data/models/note_model.
 import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
 
-import 'notes_local_source.dart';
+import 'notes_dao.dart';
 
-@LazySingleton(as: NotesLocalSource)
-class NotesLocalSourceImpl implements NotesLocalSource {
-  NotesLocalSourceImpl({
+@LazySingleton(as: NotesDao)
+class NotesDaoImpl implements NotesDao {
+  NotesDaoImpl({
     @required this.sembastDB,
   });
 
