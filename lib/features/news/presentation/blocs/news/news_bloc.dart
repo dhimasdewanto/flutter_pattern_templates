@@ -1,11 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:flutter_pattern_templates/features/news/domain/entities/article.dart';
-import 'package:flutter_pattern_templates/features/news/domain/use_cases/get_top_headlines.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
+
+import '../../../domain/entities/article.dart';
+import '../../../domain/use_cases/get_top_headlines.dart';
 
 part 'news_bloc.freezed.dart';
 part 'news_event.dart';
@@ -23,12 +24,21 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   Stream<NewsState> mapEventToState(
     NewsEvent event,
   ) async* {
-    final result = await getTopHeadlines(GetTopHeadlinesParams(
-      page: 1,
-    ));
-    yield result.fold(
-      (failure) => const NewsState.error(message: "Unexpected Error"),
-      (listArticles) => NewsState.show(listArticles: listArticles),
+    yield NewsState.show(
+      futureListArticles: _futureListArticles,
+    );
+  }
+
+  Future<List<Article>> _futureListArticles(int page) async {
+    final result = await getTopHeadlines(
+      GetTopHeadlinesParams(
+        page: page + 1,
+      ),
+    );
+
+    return result.fold(
+      (failure) => null,
+      (listArticles) => listArticles,
     );
   }
 }

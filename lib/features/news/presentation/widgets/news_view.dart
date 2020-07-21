@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pagewise/flutter_pagewise.dart';
 
+import '../../../../core/configs/app_settings.dart';
+import '../../domain/entities/article.dart';
 import '../../presentation/blocs/news/news_bloc.dart';
 
 class NewsView extends StatelessWidget {
@@ -21,15 +24,12 @@ class NewsView extends StatelessWidget {
               child: Text(messages),
             );
           },
-          show: (listArticles) {
-            return ListView.separated(
+          show: (futureListArticles) {
+            return PagewiseListView<Article>(
               padding: const EdgeInsets.all(20.0),
-              separatorBuilder: (context, index) {
-                return const Divider();
-              },
-              itemCount: listArticles.length,
-              itemBuilder: (context, index) {
-                final article = listArticles[index];
+              pageSize: AppSettings.pageSize,
+              pageFuture: futureListArticles,
+              itemBuilder: (context, article, index) {
                 return ListTile(
                   title: Text(article.title),
                   subtitle: Text(article.description),

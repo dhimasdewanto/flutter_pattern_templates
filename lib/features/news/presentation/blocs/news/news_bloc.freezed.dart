@@ -144,9 +144,10 @@ class _$NewsStateTearOff {
   }
 
 // ignore: unused_element
-  _ShowState show({List<Article> listArticles}) {
+  _ShowState show(
+      {@required Future<List<Article>> Function(int) futureListArticles}) {
     return _ShowState(
-      listArticles: listArticles,
+      futureListArticles: futureListArticles,
     );
   }
 
@@ -165,13 +166,14 @@ mixin _$NewsState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
-    @required Result show(List<Article> listArticles),
+    @required
+        Result show(Future<List<Article>> Function(int) futureListArticles),
     @required Result error(String message),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
-    Result show(List<Article> listArticles),
+    Result show(Future<List<Article>> Function(int) futureListArticles),
     Result error(String message),
     @required Result orElse(),
   });
@@ -239,7 +241,8 @@ class _$_InitialState implements _InitialState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
-    @required Result show(List<Article> listArticles),
+    @required
+        Result show(Future<List<Article>> Function(int) futureListArticles),
     @required Result error(String message),
   }) {
     assert(initial != null);
@@ -252,7 +255,7 @@ class _$_InitialState implements _InitialState {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
-    Result show(List<Article> listArticles),
+    Result show(Future<List<Article>> Function(int) futureListArticles),
     Result error(String message),
     @required Result orElse(),
   }) {
@@ -300,7 +303,7 @@ abstract class _$ShowStateCopyWith<$Res> {
   factory _$ShowStateCopyWith(
           _ShowState value, $Res Function(_ShowState) then) =
       __$ShowStateCopyWithImpl<$Res>;
-  $Res call({List<Article> listArticles});
+  $Res call({Future<List<Article>> Function(int) futureListArticles});
 }
 
 class __$ShowStateCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
@@ -313,39 +316,41 @@ class __$ShowStateCopyWithImpl<$Res> extends _$NewsStateCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object listArticles = freezed,
+    Object futureListArticles = freezed,
   }) {
     return _then(_ShowState(
-      listArticles: listArticles == freezed
-          ? _value.listArticles
-          : listArticles as List<Article>,
+      futureListArticles: futureListArticles == freezed
+          ? _value.futureListArticles
+          : futureListArticles as Future<List<Article>> Function(int),
     ));
   }
 }
 
 class _$_ShowState implements _ShowState {
-  const _$_ShowState({this.listArticles});
+  const _$_ShowState({@required this.futureListArticles})
+      : assert(futureListArticles != null);
 
   @override
-  final List<Article> listArticles;
+  final Future<List<Article>> Function(int) futureListArticles;
 
   @override
   String toString() {
-    return 'NewsState.show(listArticles: $listArticles)';
+    return 'NewsState.show(futureListArticles: $futureListArticles)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _ShowState &&
-            (identical(other.listArticles, listArticles) ||
+            (identical(other.futureListArticles, futureListArticles) ||
                 const DeepCollectionEquality()
-                    .equals(other.listArticles, listArticles)));
+                    .equals(other.futureListArticles, futureListArticles)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(listArticles);
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(futureListArticles);
 
   @override
   _$ShowStateCopyWith<_ShowState> get copyWith =>
@@ -355,26 +360,27 @@ class _$_ShowState implements _ShowState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
-    @required Result show(List<Article> listArticles),
+    @required
+        Result show(Future<List<Article>> Function(int) futureListArticles),
     @required Result error(String message),
   }) {
     assert(initial != null);
     assert(show != null);
     assert(error != null);
-    return show(listArticles);
+    return show(futureListArticles);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
-    Result show(List<Article> listArticles),
+    Result show(Future<List<Article>> Function(int) futureListArticles),
     Result error(String message),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (show != null) {
-      return show(listArticles);
+      return show(futureListArticles);
     }
     return orElse();
   }
@@ -409,9 +415,11 @@ class _$_ShowState implements _ShowState {
 }
 
 abstract class _ShowState implements NewsState {
-  const factory _ShowState({List<Article> listArticles}) = _$_ShowState;
+  const factory _ShowState(
+          {@required Future<List<Article>> Function(int) futureListArticles}) =
+      _$_ShowState;
 
-  List<Article> get listArticles;
+  Future<List<Article>> Function(int) get futureListArticles;
   _$ShowStateCopyWith<_ShowState> get copyWith;
 }
 
@@ -473,7 +481,8 @@ class _$_ErrorState implements _ErrorState {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result initial(),
-    @required Result show(List<Article> listArticles),
+    @required
+        Result show(Future<List<Article>> Function(int) futureListArticles),
     @required Result error(String message),
   }) {
     assert(initial != null);
@@ -486,7 +495,7 @@ class _$_ErrorState implements _ErrorState {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result initial(),
-    Result show(List<Article> listArticles),
+    Result show(Future<List<Article>> Function(int) futureListArticles),
     Result error(String message),
     @required Result orElse(),
   }) {

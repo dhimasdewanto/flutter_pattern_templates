@@ -5,7 +5,7 @@ abstract class NewsState with _$NewsState {
   const factory NewsState.initial() = _InitialState;
   
   const factory NewsState.show({
-    List<Article> listArticles,
+    @required Future<List<Article>> Function(int) futureListArticles,
   }) = _ShowState;
 
   const factory NewsState.error({
