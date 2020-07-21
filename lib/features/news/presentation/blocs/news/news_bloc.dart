@@ -37,7 +37,10 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     );
 
     return result.fold(
-      (failure) => null,
+      (failure) => failure.when(
+        invalidPage: () => throw "Invalid Page",
+        unexpected: () => throw "Unexpected Error",
+      ),
       (listArticles) => listArticles,
     );
   }

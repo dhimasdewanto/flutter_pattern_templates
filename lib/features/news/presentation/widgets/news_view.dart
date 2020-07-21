@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pagewise/flutter_pagewise.dart';
 
-import '../../../../core/configs/app_settings.dart';
-import '../../domain/entities/article.dart';
 import '../../presentation/blocs/news/news_bloc.dart';
+import 'news_list_view.dart';
 
 class NewsView extends StatelessWidget {
   const NewsView({Key key}) : super(key: key);
@@ -25,16 +23,8 @@ class NewsView extends StatelessWidget {
             );
           },
           show: (futureListArticles) {
-            return PagewiseListView<Article>(
-              padding: const EdgeInsets.all(20.0),
-              pageSize: AppSettings.pageSize,
-              pageFuture: futureListArticles,
-              itemBuilder: (context, article, index) {
-                return ListTile(
-                  title: Text(article.title),
-                  subtitle: Text(article.description),
-                );
-              },
+            return NewsListView(
+              futureListArticles: futureListArticles,
             );
           },
         );
