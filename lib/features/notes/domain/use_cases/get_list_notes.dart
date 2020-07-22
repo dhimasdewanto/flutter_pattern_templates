@@ -1,10 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_pattern_templates/core/use_cases/use_case.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/failures/notes_failures.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/repositories/notes_repo.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../../../core/utils/use_cases/use_case.dart';
+import '../entities/note.dart';
+import '../failures/notes_failures.dart';
+import '../repositories/notes_repo.dart';
 
 @lazySingleton
 class GetListNotes extends UseCase<List<Note>, Unit, NotesFailures> {

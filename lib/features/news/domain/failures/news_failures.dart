@@ -1,5 +1,6 @@
-import 'package:flutter_pattern_templates/core/failures/i_failure.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+import '../../../../core/utils/failures/i_failure.dart';
 
 part 'news_failures.freezed.dart';
 

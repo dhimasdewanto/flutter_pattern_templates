@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../../../core/use_cases/use_case.dart';
+import '../../../../core/utils/use_cases/use_case.dart';
 import '../entities/article.dart';
 import '../failures/news_failures.dart';
 import '../repositories/news_repo.dart';
