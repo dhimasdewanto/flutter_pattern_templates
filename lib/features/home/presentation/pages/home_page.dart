@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              ExtendedNavigator.of(context).pushNamed(Routes.settingsPage);
+              ExtendedNavigator.of(context).pushSettingsPage();
             },
           ),
         ],

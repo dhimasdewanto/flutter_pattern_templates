@@ -26,7 +26,7 @@ dependencies:
 
   # A declarative routing solution,
   # where everything needed for navigation is automatically generated for you.
-  auto_route: ^0.6.1
+  auto_route: ^0.6.6
 
   # Allows Flutter apps to discover network connectivity and configure themselves accordingly.
   connectivity: ^0.4.9
@@ -74,7 +74,7 @@ dev_dependencies:
     sdk: flutter
 
   # Generator of auto_route.
-  auto_route_generator: ^0.6.0
+  auto_route_generator: ^0.6.6
 
   # A build system for Dart code generation and modular compilation.
   build_runner: ^1.10.0

@@ -4,13 +4,15 @@
 // AutoRouteGenerator
 // **************************************************************************
 
-import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: public_member_api_docs
+
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter_pattern_templates/features/home/presentation/pages/home_page.dart';
-import 'package:flutter_pattern_templates/features/settings/presentation/pages/settings_page.dart';
-import 'package:flutter_pattern_templates/features/notes/presentation/pages/notes_page.dart';
-import 'package:flutter_pattern_templates/features/news/presentation/pages/news_page.dart';
+import 'package:flutter/material.dart';
+
+import '../../features/home/presentation/pages/home_page.dart';
+import '../../features/news/presentation/pages/news_page.dart';
+import '../../features/notes/presentation/pages/notes_page.dart';
+import '../../features/settings/presentation/pages/settings_page.dart';
 
 class Routes {
   static const String homePage = '/';
@@ -37,103 +39,43 @@ class Router extends RouterBase {
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
   final _pagesMap = <Type, AutoRouteFactory>{
-    HomePage: (RouteData data) {
-      var args =
-          data.getArgs<HomePageArguments>(orElse: () => HomePageArguments());
+    HomePage: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => HomePage(key: args.key),
+        builder: (context) => const HomePage(),
         settings: data,
       );
     },
-    SettingsPage: (RouteData data) {
-      var args = data.getArgs<SettingsPageArguments>(
-          orElse: () => SettingsPageArguments());
+    SettingsPage: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => SettingsPage(key: args.key),
+        builder: (context) => const SettingsPage(),
         settings: data,
       );
     },
-    NotesPage: (RouteData data) {
-      var args =
-          data.getArgs<NotesPageArguments>(orElse: () => NotesPageArguments());
+    NotesPage: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => NotesPage(key: args.key),
+        builder: (context) => const NotesPage(),
         settings: data,
       );
     },
-    NewsPage: (RouteData data) {
-      var args =
-          data.getArgs<NewsPageArguments>(orElse: () => NewsPageArguments());
+    NewsPage: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => NewsPage(key: args.key),
+        builder: (context) => const NewsPage(),
         settings: data,
       );
     },
   };
 }
 
-// *************************************************************************
-// Navigation helper methods extension
-// **************************************************************************
+/// ************************************************************************
+/// Navigation helper methods extension
+/// *************************************************************************
 
-extension RouterNavigationHelperMethods on ExtendedNavigatorState {
-  Future<dynamic> pushHomePage({
-    Key key,
-  }) =>
-      pushNamed<dynamic>(
-        Routes.homePage,
-        arguments: HomePageArguments(key: key),
-      );
+extension RouterExtendedNavigatorStateX on ExtendedNavigatorState {
+  Future<dynamic> pushHomePage() => push<dynamic>(Routes.homePage);
 
-  Future<dynamic> pushSettingsPage({
-    Key key,
-  }) =>
-      pushNamed<dynamic>(
-        Routes.settingsPage,
-        arguments: SettingsPageArguments(key: key),
-      );
+  Future<dynamic> pushSettingsPage() => push<dynamic>(Routes.settingsPage);
 
-  Future<dynamic> pushNotesPage({
-    Key key,
-  }) =>
-      pushNamed<dynamic>(
-        Routes.notesPage,
-        arguments: NotesPageArguments(key: key),
-      );
+  Future<dynamic> pushNotesPage() => push<dynamic>(Routes.notesPage);
 
-  Future<dynamic> pushNewsPage({
-    Key key,
-  }) =>
-      pushNamed<dynamic>(
-        Routes.newsPage,
-        arguments: NewsPageArguments(key: key),
-      );
-}
-
-// *************************************************************************
-// Arguments holder classes
-// **************************************************************************
-
-//HomePage arguments holder class
-class HomePageArguments {
-  final Key key;
-  HomePageArguments({this.key});
-}
-
-//SettingsPage arguments holder class
-class SettingsPageArguments {
-  final Key key;
-  SettingsPageArguments({this.key});
-}
-
-//NotesPage arguments holder class
-class NotesPageArguments {
-  final Key key;
-  NotesPageArguments({this.key});
-}
-
-//NewsPage arguments holder class
-class NewsPageArguments {
-  final Key key;
-  NewsPageArguments({this.key});
+  Future<dynamic> pushNewsPage() => push<dynamic>(Routes.newsPage);
 }
