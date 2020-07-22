@@ -7,6 +7,7 @@ Collection of best pattern and architecture for Flutter.
 - [Add Secret Keys](#add-secret-keys)
 - [VSCode Better Shortcuts](#vscode-better-shortcuts)
 - [VSCode Launch Configuration](#vscode-launch-configuration)
+- [Release Android App](#release-android-app)
 
 ### Add Secret Keys
 
@@ -105,5 +106,25 @@ Collection of best pattern and architecture for Flutter.
     }
   ]
 }
+```
 
+### Release Android App
+
+---
+
+1. Read [documentation](https://flutter.dev/docs/deployment/android)
+
+2. Template of `key.properties`:
+
+```properties
+storePassword=<password from jks step>
+keyPassword=<password from jks step>
+keyAlias=key
+storeFile=C:\\Users\\SOME_USER_NAME\\WHEREVER\\key.jks
+```
+
+3. Template of build apk command:
+
+```
+flutter build apk --split-per-abi --obfuscate --split-debug-info=/flutter_pattern_templates/v1.0.0 --target=lib/main_prod.dart
 ```
