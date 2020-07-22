@@ -42,7 +42,7 @@ dependencies:
   easy_localization: ^2.3.2
 
   # Flutter package that helps implement the BLoC pattern.
-  flutter_bloc: ^5.0.1
+  flutter_bloc: ^6.0.0
 
   # Hooks are a new kind of object that manages a Widget life-cycles.
   # They exist for one reason: increase the code-sharing between widgets by removing duplicates.
@@ -55,10 +55,10 @@ dependencies:
   freezed_annotation: ^0.11.0
 
   # This is a simple Service Locator for Dart and Flutter projects.
-  get_it: ^4.0.2
+  get_it: ^4.0.3
 
   # Injectable is a convenient code generator for get_it.
-  injectable: ^0.4.0+1
+  injectable: ^1.0.2
 
   # For testing purposes.
   mockito: ^4.1.1
@@ -84,7 +84,7 @@ dev_dependencies:
   freezed: ^0.11.4
 
   # Generator of injectable.
-  injectable_generator: ^0.4.1
+  injectable_generator: ^1.0.2
 
   # Convert model to map, etc.
   json_serializable: ^3.3.0
