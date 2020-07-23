@@ -2,7 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import '../utils/networks/dio_setter.dart';
+import '../networks/dio_setter.dart';
 
 @module
 abstract class RegisterModules {

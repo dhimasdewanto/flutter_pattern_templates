@@ -1,8 +1,8 @@
-import 'package:meta/meta.dart';
 import 'package:injectable/injectable.dart';
+import 'package:meta/meta.dart';
 import 'package:sembast/sembast.dart';
 
-import '../../../../core/utils/databases/sembast_db.dart';
+import '../../../../core/databases/sembast_db.dart';
 import '../models/note_model.dart';
 import 'notes_dao.dart';
 

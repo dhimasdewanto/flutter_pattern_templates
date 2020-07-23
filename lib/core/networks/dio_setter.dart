@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
 
-import '../../configs/app_settings.dart';
-import '../../configs/secret_reader.dart';
-import '../../injections/injection.dart';
+import '../configs/app_settings.dart';
+import '../configs/secret_reader.dart';
+import '../injections/injection.dart';
 import 'interceptors/retry_on_connection_change_interceptor.dart';
 
 
