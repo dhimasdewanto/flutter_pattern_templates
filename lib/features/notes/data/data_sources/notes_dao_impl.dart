@@ -1,9 +1,9 @@
-import 'package:flutter/foundation.dart';
-import 'package:flutter_pattern_templates/core/databases/sembast_db.dart';
-import 'package:flutter_pattern_templates/features/notes/data/models/note_model.dart';
+import 'package:meta/meta.dart';
 import 'package:injectable/injectable.dart';
 import 'package:sembast/sembast.dart';
 
+import '../../../../core/utils/databases/sembast_db.dart';
+import '../models/note_model.dart';
 import 'notes_dao.dart';
 
 @LazySingleton(as: NotesDao)

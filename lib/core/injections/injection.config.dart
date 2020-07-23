@@ -23,9 +23,9 @@ import '../../features/notes/domain/use_cases/add_note.dart';
 import '../../features/notes/domain/use_cases/delete_note.dart';
 import '../../features/notes/domain/use_cases/get_list_notes.dart';
 import '../../features/notes/presentation/blocs/notes/notes_bloc.dart';
-import '../databases/sembast_db.dart';
-import '../networks/connectivity_actions/request_retrier.dart';
-import '../networks/interceptors/retry_on_connection_change_interceptor.dart';
+import '../utils/databases/sembast_db.dart';
+import '../utils/networks/connectivity_actions/request_retrier.dart';
+import '../utils/networks/interceptors/retry_on_connection_change_interceptor.dart';
 import 'register_modules.dart';
 
 /// adds generated dependencies

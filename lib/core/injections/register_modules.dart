@@ -2,8 +2,7 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 
-import '../configs/app_settings.dart';
-import '../configs/secret_reader.dart';
+import '../utils/networks/dio_setter.dart';
 
 @module
 abstract class RegisterModules {
@@ -11,14 +10,5 @@ abstract class RegisterModules {
   Connectivity get connectivity => Connectivity();
 
   @lazySingleton
-  Dio get dio => _initDio;
-
-  Dio get _initDio {
-    final dio = Dio();
-    dio.options.baseUrl = AppSettings.newsApiUrl;
-    dio.options.headers = {
-      "X-Api-Key": SecretReader.newsApiKey,
-    };
-    return dio;
-  }
+  Dio get dio => initDio;
 }
