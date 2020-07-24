@@ -4,6 +4,7 @@ import 'package:flutter_pagewise/flutter_pagewise.dart';
 
 import '../../../../core/configs/app_settings.dart';
 import '../../domain/entities/article.dart';
+import 'loading_view_builder.dart';
 
 class NewsListView extends HookWidget {
   const NewsListView({
@@ -12,6 +13,8 @@ class NewsListView extends HookWidget {
   }) : super(key: key);
 
   final Future<List<Article>> Function(int) futureListArticles;
+
+  static const _padding = 20.0;
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +30,25 @@ class NewsListView extends HookWidget {
         pagewiseController.reset();
       },
       child: PagewiseListView<Article>(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(_padding),
         pageLoadController: pagewiseController,
         showRetry: false,
+        loadingBuilder: (context) {
+          return LoadingViewBuilder(
+            pagewiseController: pagewiseController,
+            paddingValue: _padding,
+          );
+        },
         errorBuilder: (context, error) {
-          return Text("$error");
+          return Column(
+            children: <Widget>[
+              Text("$error"),
+              IconButton(
+                icon: Icon(Icons.refresh),
+                onPressed: pagewiseController.retry,
+              ),
+            ],
+          );
         },
         itemBuilder: (context, article, index) {
           return ListTile(
