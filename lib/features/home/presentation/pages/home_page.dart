@@ -1,14 +1,20 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_pattern_templates/core/translations/locale_keys.g.dart';
+import 'package:flutter/services.dart';
 
 import '../../../../core/configs/secret_reader.dart';
 import '../../../../core/routes/router.gr.dart';
+import '../../../../core/translations/locale_keys.g.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
+
+  static const _batteryPlatform = MethodChannel('com.dhimasdewanto.flutter_pattern_templates/battery');
+  static const _methodName = "get_battery_level";
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,19 @@ class HomePage extends StatelessWidget {
               tr(LocaleKeys.hello_world),
               style: Theme.of(context).textTheme.headline5,
             ),
+            const SizedBox(height: 10.0),
             Text("App Key = ${SecretReader.appKey}"),
+            const SizedBox(height: 10.0),
+            FutureBuilder<String>(
+              future: _getBatteryLevelText(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData == false) {
+                  return const Text("Loading Battery...");
+                }
+                return Text(snapshot.data);
+              },
+            ),
+            const SizedBox(height: 10.0),
             RaisedButton(
               onPressed: () {
                 ExtendedNavigator.of(context).pushNotesPage();
@@ -42,6 +60,7 @@ class HomePage extends StatelessWidget {
                 tr(LocaleKeys.notes),
               ),
             ),
+            const SizedBox(height: 10.0),
             RaisedButton(
               onPressed: () {
                 ExtendedNavigator.of(context).pushNewsPage();
@@ -54,5 +73,22 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<String> _getBatteryLevelText() async {
+    if (Platform.isAndroid == false) {
+      return "Only Support Android, for now";
+    }
+
+    String batteryLevel;
+    try {
+      final int result = await _batteryPlatform.invokeMethod(_methodName);
+      batteryLevel = 'Battery Level From Platform Channel = $result%';
+    } on PlatformException catch (e) {
+      batteryLevel = "Failed to get battery level: '${e.message}'.";
+    } catch (e) {
+      batteryLevel = "Unknown error";
+    }
+    return batteryLevel;
   }
 }
