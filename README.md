@@ -8,6 +8,7 @@ Collection of best pattern and architecture for Flutter.
 - [VSCode Better Shortcuts](#vscode-better-shortcuts)
 - [VSCode Launch Configuration](#vscode-launch-configuration)
 - [Release Android App](#release-android-app)
+- [Platform Channel](#platform-channel)
 
 ### Add Secret Keys
 
@@ -127,4 +128,20 @@ storeFile=C:\\Users\\SOME_USER_NAME\\WHEREVER\\key.jks
 
 ```
 flutter build apk --split-per-abi --obfuscate --split-debug-info=/flutter_pattern_templates/v1.0.0 --target=lib/main_prod.dart
+```
+
+### Platform Channel
+
+---
+
+1. Read [documentation](https://flutter.dev/docs/development/platform-integration/platform-channels?tab=android-channel-kotlin-tab)
+
+##### Android
+
+* If you want to add `OtherActivity` in Android native, make sure to update this code in `AndroidManifest.xml`:
+
+```xml
+<activity
+            android:name=".OtherActivity"
+            android:theme="@style/Theme.AppCompat" />
 ```
