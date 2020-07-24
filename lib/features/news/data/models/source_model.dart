@@ -10,9 +10,9 @@ class SourceModel {
     @required this.name,
   });
 
-  final String id;
-  final String name;
-
   factory SourceModel.fromJson(Map<String, dynamic> json) => _$SourceModelFromJson(json);
   Map<String, dynamic> toJson() => _$SourceModelToJson(this);
+
+  final String id;
+  final String name;
 }

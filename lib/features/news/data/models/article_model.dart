@@ -19,6 +19,10 @@ class ArticleModel {
     @required this.content,
   });
 
+  factory ArticleModel.fromJson(Map<String, dynamic> json) =>
+      _$ArticleModelFromJson(json);
+  Map<String, dynamic> toJson() => _$ArticleModelToJson(this);
+
   final SourceModel source;
   final String author;
   final String title;
@@ -27,10 +31,6 @@ class ArticleModel {
   final String urlToImage;
   final DateTime publishedAt;
   final String content;
-
-  factory ArticleModel.fromJson(Map<String, dynamic> json) =>
-      _$ArticleModelFromJson(json);
-  Map<String, dynamic> toJson() => _$ArticleModelToJson(this);
 
   Article toDomain() => Article(
         sourceId: source.id ?? "",
