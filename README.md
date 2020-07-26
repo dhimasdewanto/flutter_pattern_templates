@@ -10,6 +10,10 @@ Collection of best pattern and architecture for Flutter.
 - [Release Android App](#release-android-app)
 - [Platform Channel](#platform-channel)
 
+## **WARNINGS**
+
+> **Don't update gradle, because it won't build release app.**
+
 ### Add Secret Keys
 
 ---
