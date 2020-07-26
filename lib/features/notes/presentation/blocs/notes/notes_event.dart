@@ -2,7 +2,9 @@ part of 'notes_bloc.dart';
 
 @freezed
 abstract class NotesEvent with _$NotesEvent {
-  const factory NotesEvent.load() = _LoadEvent;
+  const factory NotesEvent.load({
+    bool isDone,
+  }) = _LoadEvent;
   const factory NotesEvent.insert({
     @required Note note,
   }) = _InsertEvent;

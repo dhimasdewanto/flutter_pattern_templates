@@ -23,6 +23,7 @@ import '../../features/notes/domain/use_cases/add_note.dart';
 import '../../features/notes/domain/use_cases/check_is_done.dart';
 import '../../features/notes/domain/use_cases/delete_note.dart';
 import '../../features/notes/domain/use_cases/get_list_notes.dart';
+import '../../features/notes/domain/use_cases/get_list_notes_filter.dart';
 import '../../features/notes/presentation/blocs/notes/notes_bloc.dart';
 import '../databases/sembast_db.dart';
 import '../networks/connectivity_actions/request_retrier.dart';
@@ -54,8 +55,11 @@ void $initGetIt(GetIt g, {String environment}) {
   gh.lazySingleton<CheckIsDone>(() => CheckIsDone(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<DeleteNote>(() => DeleteNote(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<GetListNotes>(() => GetListNotes(notesRepo: g<NotesRepo>()));
+  gh.lazySingleton<GetListNotesFilter>(
+      () => GetListNotesFilter(notesRepo: g<NotesRepo>()));
   gh.factory<NotesBloc>(() => NotesBloc(
         getListNotes: g<GetListNotes>(),
+        getListNotesFilter: g<GetListNotesFilter>(),
         addNote: g<AddNote>(),
         deleteNote: g<DeleteNote>(),
         checkIsDone: g<CheckIsDone>(),

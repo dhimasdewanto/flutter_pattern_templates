@@ -26,6 +26,19 @@ class NotesDaoImpl implements NotesDao {
   }
 
   @override
+  Future<void> insert(NoteModel newNote) async {
+    final db = await sembastDB.database;
+    await store.add(db, newNote.toDBMap());
+  }
+
+  @override
+  Future<void> update(NoteModel updatedNote) async {
+    final db = await sembastDB.database;
+    final record = store.record(updatedNote.dbKey);
+    await record.put(db, updatedNote.toDBMap());
+  }
+
+  @override
   Future<List<NoteModel>> getAll() async {
     final db = await sembastDB.database;
     final record = await store.find(db);
@@ -37,15 +50,19 @@ class NotesDaoImpl implements NotesDao {
   }
 
   @override
-  Future<void> insert(NoteModel newNote) async {
+  Future<List<NoteModel>> getFilter({bool isDone = false}) async {
     final db = await sembastDB.database;
-    await store.add(db, newNote.toDBMap());
-  }
-
-  @override
-  Future<void> update(NoteModel updatedNote) async {
-    final db = await sembastDB.database;
-    final record = store.record(updatedNote.dbKey);
-    await record.put(db, updatedNote.toDBMap());
+    final finder = Finder(
+      filter: Filter.equals("is_done", isDone),
+    );
+    final record = await store.find(
+      db,
+      finder: finder,
+    );
+    return record.map((snapshot) {
+      final fruit = NoteModel.fromDBMap(snapshot.value);
+      fruit.dbKey = snapshot.key;
+      return fruit;
+    }).toList();
   }
 }

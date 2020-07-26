@@ -14,4 +14,6 @@ abstract class NotesDao {
   Future<void> delete(NoteModel deletedNote);
 
   Future<void> update(NoteModel updatedNote);
+
+  Future<List<NoteModel>> getFilter({bool isDone = false});
 }

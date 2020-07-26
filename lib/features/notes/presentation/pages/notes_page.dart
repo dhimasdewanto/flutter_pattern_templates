@@ -13,14 +13,48 @@ class NotesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final notesBloc = getIt<NotesBloc>();
+
     return BlocProvider(
-      create: (context) => getIt<NotesBloc>()
+      create: (context) => notesBloc
         ..add(
           const NotesEvent.load(),
         ),
       child: Scaffold(
         appBar: MyAppBar(
           textTitle: tr(LocaleKeys.notes),
+          actions: <Widget>[
+            PopupMenuButton<String>(
+              onSelected: (value) {
+                switch (value) {
+                  case "isDone":
+                    notesBloc.add(const NotesEvent.load(isDone: true));
+                    break;
+                  case "isNotDone":
+                    notesBloc.add(const NotesEvent.load(isDone: false));
+                    break;
+                  default:
+                    notesBloc.add(const NotesEvent.load());
+                }
+              },
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem(
+                    value: "all",
+                    child: Text("Show All"),
+                  ),
+                  const PopupMenuItem(
+                    value: "isDone",
+                    child: Text("Show is Done Only"),
+                  ),
+                  const PopupMenuItem(
+                    value: "isNotDone",
+                    child: Text("Show is Not Done Only"),
+                  ),
+                ];
+              },
+            ),
+          ],
         ),
         body: const NotesView(),
       ),

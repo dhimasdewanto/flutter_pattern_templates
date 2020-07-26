@@ -28,6 +28,20 @@ class NotesRepoImpl implements NotesRepo {
   }
 
   @override
+  Future<Either<NotesFailures, List<Note>>> getListNotesFilter({
+    @required bool isDone,
+  }) async {
+    try {
+      final source = await localSource.getFilter(isDone: isDone);
+      final listNotes =
+          source.map((noteModel) => noteModel.toDomain()).toList();
+      return right(listNotes);
+    } catch (e) {
+      return left(const NotesFailures.unexpected());
+    }
+  }
+
+  @override
   Future<Either<NotesFailures, Unit>> addNote(Note newNote) async {
     try {
       await localSource.insert(NoteModel.fromDomain(newNote));

@@ -13,8 +13,10 @@ class _$NotesEventTearOff {
   const _$NotesEventTearOff();
 
 // ignore: unused_element
-  _LoadEvent load() {
-    return const _LoadEvent();
+  _LoadEvent load({bool isDone}) {
+    return _LoadEvent(
+      isDone: isDone,
+    );
   }
 
 // ignore: unused_element
@@ -45,14 +47,14 @@ const $NotesEvent = _$NotesEventTearOff();
 mixin _$NotesEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result load(),
+    @required Result load(bool isDone),
     @required Result insert(Note note),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result load(),
+    Result load(bool isDone),
     Result insert(Note note),
     Result remove(Note note),
     Result checkIsDone(Note note),
@@ -93,6 +95,7 @@ abstract class _$LoadEventCopyWith<$Res> {
   factory _$LoadEventCopyWith(
           _LoadEvent value, $Res Function(_LoadEvent) then) =
       __$LoadEventCopyWithImpl<$Res>;
+  $Res call({bool isDone});
 }
 
 class __$LoadEventCopyWithImpl<$Res> extends _$NotesEventCopyWithImpl<$Res>
@@ -102,28 +105,48 @@ class __$LoadEventCopyWithImpl<$Res> extends _$NotesEventCopyWithImpl<$Res>
 
   @override
   _LoadEvent get _value => super._value as _LoadEvent;
+
+  @override
+  $Res call({
+    Object isDone = freezed,
+  }) {
+    return _then(_LoadEvent(
+      isDone: isDone == freezed ? _value.isDone : isDone as bool,
+    ));
+  }
 }
 
 class _$_LoadEvent implements _LoadEvent {
-  const _$_LoadEvent();
+  const _$_LoadEvent({this.isDone});
+
+  @override
+  final bool isDone;
 
   @override
   String toString() {
-    return 'NotesEvent.load()';
+    return 'NotesEvent.load(isDone: $isDone)';
   }
 
   @override
   bool operator ==(dynamic other) {
-    return identical(this, other) || (other is _LoadEvent);
+    return identical(this, other) ||
+        (other is _LoadEvent &&
+            (identical(other.isDone, isDone) ||
+                const DeepCollectionEquality().equals(other.isDone, isDone)));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(isDone);
+
+  @override
+  _$LoadEventCopyWith<_LoadEvent> get copyWith =>
+      __$LoadEventCopyWithImpl<_LoadEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result load(),
+    @required Result load(bool isDone),
     @required Result insert(Note note),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
@@ -132,13 +155,13 @@ class _$_LoadEvent implements _LoadEvent {
     assert(insert != null);
     assert(remove != null);
     assert(checkIsDone != null);
-    return load();
+    return load(isDone);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result load(),
+    Result load(bool isDone),
     Result insert(Note note),
     Result remove(Note note),
     Result checkIsDone(Note note),
@@ -146,7 +169,7 @@ class _$_LoadEvent implements _LoadEvent {
   }) {
     assert(orElse != null);
     if (load != null) {
-      return load();
+      return load(isDone);
     }
     return orElse();
   }
@@ -184,7 +207,10 @@ class _$_LoadEvent implements _LoadEvent {
 }
 
 abstract class _LoadEvent implements NotesEvent {
-  const factory _LoadEvent() = _$_LoadEvent;
+  const factory _LoadEvent({bool isDone}) = _$_LoadEvent;
+
+  bool get isDone;
+  _$LoadEventCopyWith<_LoadEvent> get copyWith;
 }
 
 abstract class _$InsertEventCopyWith<$Res> {
@@ -243,7 +269,7 @@ class _$_InsertEvent implements _InsertEvent {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result load(),
+    @required Result load(bool isDone),
     @required Result insert(Note note),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
@@ -258,7 +284,7 @@ class _$_InsertEvent implements _InsertEvent {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result load(),
+    Result load(bool isDone),
     Result insert(Note note),
     Result remove(Note note),
     Result checkIsDone(Note note),
@@ -366,7 +392,7 @@ class _$_RemoveEvent implements _RemoveEvent {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result load(),
+    @required Result load(bool isDone),
     @required Result insert(Note note),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
@@ -381,7 +407,7 @@ class _$_RemoveEvent implements _RemoveEvent {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result load(),
+    Result load(bool isDone),
     Result insert(Note note),
     Result remove(Note note),
     Result checkIsDone(Note note),
@@ -490,7 +516,7 @@ class _$_CheckIsDoneEvent implements _CheckIsDoneEvent {
   @override
   @optionalTypeArgs
   Result when<Result extends Object>({
-    @required Result load(),
+    @required Result load(bool isDone),
     @required Result insert(Note note),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
@@ -505,7 +531,7 @@ class _$_CheckIsDoneEvent implements _CheckIsDoneEvent {
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
-    Result load(),
+    Result load(bool isDone),
     Result insert(Note note),
     Result remove(Note note),
     Result checkIsDone(Note note),
