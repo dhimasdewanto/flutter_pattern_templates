@@ -1,7 +1,10 @@
-import 'package:flutter_pattern_templates/features/notes/data/models/note_model.dart';
+import 'package:flutter/foundation.dart';
 import 'package:sembast/sembast.dart';
 
+import '../models/note_model.dart';
+
 abstract class NotesDao {
+  @protected
   StoreRef<int, Map<String, dynamic>> get store;
 
   Future<List<NoteModel>> getAll();
@@ -9,4 +12,6 @@ abstract class NotesDao {
   Future<void> insert(NoteModel newNote);
 
   Future<void> delete(NoteModel deletedNote);
+
+  Future<void> update(NoteModel updatedNote);
 }

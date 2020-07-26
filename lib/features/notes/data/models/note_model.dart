@@ -5,12 +5,14 @@ class NoteModel {
   NoteModel({
     this.id,
     @required this.body,
+    @required this.isDone,
   });
 
   /// DON'T insert id. Insert after this object created.
   factory NoteModel.fromDBMap(Map<String, dynamic> map) {
     return NoteModel(
       body: map['body'] as String,
+      isDone: map['is_done'] as bool,
     );
   }
 
@@ -18,6 +20,7 @@ class NoteModel {
     return NoteModel(
       id: note.id,
       body: note.body,
+      isDone: note.isDone,
     );
   }
 
@@ -27,10 +30,13 @@ class NoteModel {
 
   final String body;
 
+  final bool isDone;
+
   /// DON'T insert id. It create it self.
   Map<String, dynamic> toDBMap() {
     return {
       'body': body,
+      'is_done': isDone,
     };
   }
 
@@ -38,6 +44,7 @@ class NoteModel {
     return Note(
       id: id,
       body: body,
+      isDone: isDone,
     );
   }
 }

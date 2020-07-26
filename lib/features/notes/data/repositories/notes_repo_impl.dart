@@ -46,4 +46,14 @@ class NotesRepoImpl implements NotesRepo {
       return left(const NotesFailures.unexpected());
     }
   }
+
+  @override
+  Future<Either<NotesFailures, Unit>> updateNote(Note updatedNote) async {
+    try {
+      await localSource.update(NoteModel.fromDomain(updatedNote));
+      return right(unit);
+    } catch (e) {
+      return left(const NotesFailures.unexpected());
+    }
+  }
 }

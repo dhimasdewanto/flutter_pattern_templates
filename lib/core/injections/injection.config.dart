@@ -20,6 +20,7 @@ import '../../features/notes/data/data_sources/notes_dao_impl.dart';
 import '../../features/notes/data/repositories/notes_repo_impl.dart';
 import '../../features/notes/domain/repositories/notes_repo.dart';
 import '../../features/notes/domain/use_cases/add_note.dart';
+import '../../features/notes/domain/use_cases/check_is_done.dart';
 import '../../features/notes/domain/use_cases/delete_note.dart';
 import '../../features/notes/domain/use_cases/get_list_notes.dart';
 import '../../features/notes/presentation/blocs/notes/notes_bloc.dart';
@@ -50,12 +51,14 @@ void $initGetIt(GetIt g, {String environment}) {
   gh.lazySingleton<NotesDao>(() => NotesDaoImpl(sembastDB: g<SembastDB>()));
   gh.lazySingleton<NotesRepo>(() => NotesRepoImpl(localSource: g<NotesDao>()));
   gh.lazySingleton<AddNote>(() => AddNote(notesRepo: g<NotesRepo>()));
+  gh.lazySingleton<CheckIsDone>(() => CheckIsDone(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<DeleteNote>(() => DeleteNote(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<GetListNotes>(() => GetListNotes(notesRepo: g<NotesRepo>()));
   gh.factory<NotesBloc>(() => NotesBloc(
         getListNotes: g<GetListNotes>(),
         addNote: g<AddNote>(),
         deleteNote: g<DeleteNote>(),
+        checkIsDone: g<CheckIsDone>(),
       ));
 }
 

@@ -17,7 +17,7 @@ void main() {
   });
 
   test("Should return success or right", () async {
-    final correctValue = Note(id: 2, body: "Something");
+    final correctValue = Note(id: 2, body: "Something", isDone: false);
 
     when(mockRepo.deleteNote(correctValue)).thenAnswer((_) async => right(unit));
 

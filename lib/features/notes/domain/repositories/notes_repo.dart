@@ -6,4 +6,5 @@ abstract class NotesRepo {
   Future<Either<NotesFailures, List<Note>>> getListNotes();
   Future<Either<NotesFailures, Unit>> addNote(Note newNote);
   Future<Either<NotesFailures, Unit>> deleteNote(Note deletedNote);
+  Future<Either<NotesFailures, Unit>> updateNote(Note updatedNote);
 }

@@ -18,7 +18,7 @@ void main() {
   });
 
   test("Should return success or right", () async {
-    final correctValue = Note(body: "Something");
+    final correctValue = Note(body: "Something", isDone: false);
 
     when(mockRepo.addNote(correctValue)).thenAnswer((_) async => right(unit));
 
@@ -30,7 +30,7 @@ void main() {
   });
 
   test("Should return failure because body is empty", () async {
-    final correctValue = Note(body: "");
+    final correctValue = Note(body: "", isDone: false);
 
     when(mockRepo.addNote(correctValue)).thenAnswer((_) async => right(unit));
 

@@ -39,15 +39,34 @@ class NotesView extends StatelessWidget {
                       final note = listNotes[index];
                       return ListTile(
                         title: Text(note.body),
-                        trailing: IconButton(
-                          icon: Icon(Icons.delete),
-                          onPressed: () {
-                            context.bloc<NotesBloc>().add(
-                                  NotesEvent.remove(
-                                    note: note,
-                                  ),
-                                );
-                          },
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Checkbox(
+                              value: note.isDone,
+                              onChanged: (value) {
+                                context.bloc<NotesBloc>().add(
+                                      NotesEvent.checkIsDone(
+                                        note: Note(
+                                          id: note.id,
+                                          body: note.body,
+                                          isDone: value,
+                                        ),
+                                      ),
+                                    );
+                              },
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.delete),
+                              onPressed: () {
+                                context.bloc<NotesBloc>().add(
+                                      NotesEvent.remove(
+                                        note: note,
+                                      ),
+                                    );
+                              },
+                            ),
+                          ],
                         ),
                       );
                     },
@@ -68,6 +87,7 @@ class NotesView extends StatelessWidget {
                     NotesEvent.insert(
                       note: Note(
                         body: value,
+                        isDone: false,
                       ),
                     ),
                   );

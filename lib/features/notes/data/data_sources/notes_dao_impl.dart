@@ -42,4 +42,11 @@ class NotesDaoImpl implements NotesDao {
     final db = await sembastDB.database;
     await store.add(db, newNote.toDBMap());
   }
+
+  @override
+  Future<void> update(NoteModel updatedNote) async {
+    final db = await sembastDB.database;
+    final record = store.record(updatedNote.id);
+    await record.put(db, updatedNote.toDBMap());
+  }
 }

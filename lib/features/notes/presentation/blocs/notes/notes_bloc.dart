@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/use_cases/add_note.dart';
+import 'package:flutter_pattern_templates/features/notes/domain/use_cases/check_is_done.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/use_cases/delete_note.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/use_cases/get_list_notes.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -18,11 +19,13 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     @required this.getListNotes,
     @required this.addNote,
     @required this.deleteNote,
+    @required this.checkIsDone,
   }) : super(const NotesState.initial());
 
   final GetListNotes getListNotes;
   final AddNote addNote;
   final DeleteNote deleteNote;
+  final CheckIsDone checkIsDone;
 
   @override
   Stream<NotesState> mapEventToState(
@@ -31,6 +34,17 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
     yield* event.map(
       load: (event) async* {
         yield* _showListNotes();
+      },
+      checkIsDone: (event) async* {
+        final result = await checkIsDone(event.note);
+        yield* result.fold(
+          (failure) async* {
+            yield const NotesState.error(
+              message: "Unexpected error",
+            );
+          },
+          (_) => _showListNotes(),
+        );
       },
       insert: (event) async* {
         final result = await addNote(event.note);
