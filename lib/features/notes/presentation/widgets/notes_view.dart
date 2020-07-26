@@ -48,7 +48,7 @@ class NotesView extends StatelessWidget {
                                 context.bloc<NotesBloc>().add(
                                       NotesEvent.checkIsDone(
                                         note: Note(
-                                          id: note.id,
+                                          dbKey: note.dbKey,
                                           body: note.body,
                                           isDone: value,
                                         ),

@@ -21,7 +21,7 @@ class NotesDaoImpl implements NotesDao {
   @override
   Future<void> delete(NoteModel deletedNote) async {
     final db = await sembastDB.database;
-    final finder = Finder(filter: Filter.byKey(deletedNote.id));
+    final finder = Finder(filter: Filter.byKey(deletedNote.dbKey));
     await store.delete(db, finder: finder);
   }
 
@@ -31,8 +31,7 @@ class NotesDaoImpl implements NotesDao {
     final record = await store.find(db);
     return record.map((snapshot) {
       final fruit = NoteModel.fromDBMap(snapshot.value);
-      // An ID is a key of a record from the database.
-      fruit.id = snapshot.key;
+      fruit.dbKey = snapshot.key;
       return fruit;
     }).toList();
   }
@@ -46,7 +45,7 @@ class NotesDaoImpl implements NotesDao {
   @override
   Future<void> update(NoteModel updatedNote) async {
     final db = await sembastDB.database;
-    final record = store.record(updatedNote.id);
+    final record = store.record(updatedNote.dbKey);
     await record.put(db, updatedNote.toDBMap());
   }
 }

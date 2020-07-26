@@ -3,12 +3,12 @@ import 'package:meta/meta.dart';
 
 class NoteModel {
   NoteModel({
-    this.id,
+    this.dbKey,
     @required this.body,
     @required this.isDone,
   });
 
-  /// DON'T insert id. Insert after this object created.
+  /// DON'T insert dbKey. Insert after this object created.
   factory NoteModel.fromDBMap(Map<String, dynamic> map) {
     return NoteModel(
       body: map['body'] as String,
@@ -18,7 +18,7 @@ class NoteModel {
 
   factory NoteModel.fromDomain(Note note) {
     return NoteModel(
-      id: note.id,
+      dbKey: note.dbKey,
       body: note.body,
       isDone: note.isDone,
     );
@@ -26,13 +26,13 @@ class NoteModel {
 
   // Id will be gotten from the database.
   // It's automatically generated & unique for every stored Fruit.
-  int id;
+  int dbKey;
 
   final String body;
 
   final bool isDone;
 
-  /// DON'T insert id. It create it self.
+  /// DON'T insert dbKey. It create it self.
   Map<String, dynamic> toDBMap() {
     return {
       'body': body,
@@ -42,7 +42,7 @@ class NoteModel {
 
   Note toDomain() {
     return Note(
-      id: id,
+      dbKey: dbKey,
       body: body,
       isDone: isDone,
     );
