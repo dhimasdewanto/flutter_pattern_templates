@@ -1,15 +1,16 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/failures/notes_failures.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/use_cases/add_note.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/use_cases/check_is_done.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/use_cases/delete_note.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/use_cases/get_list_notes.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/use_cases/get_list_notes_filter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
+
+import '../../../domain/entities/note.dart';
+import '../../../domain/failures/notes_failures.dart';
+import '../../../domain/use_cases/add_note.dart';
+import '../../../domain/use_cases/check_is_done.dart';
+import '../../../domain/use_cases/delete_note.dart';
+import '../../../domain/use_cases/get_list_notes.dart';
+import '../../../domain/use_cases/get_list_notes_filter.dart';
 
 part 'notes_bloc.freezed.dart';
 part 'notes_event.dart';
@@ -50,7 +51,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
               message: "Unexpected error",
             );
           },
-          (_) => _showListNotes(),
+          (_) => _showCheckIsDoneListNotes(event),
         );
       },
       insert: (event) async* {
@@ -80,6 +81,21 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
           (_) => _showListNotes(),
         );
       },
+    );
+  }
+
+  Stream<NotesState> _showCheckIsDoneListNotes(_CheckIsDoneEvent event) async* {
+    final listNotes = List<Note>.from((state as _ShowState).listNotes);
+    final replacedIndex = listNotes.indexWhere(
+      (note) => note.dbKey == event.note.dbKey,
+    );
+    listNotes.replaceRange(
+      replacedIndex,
+      replacedIndex + 1,
+      [event.note],
+    );
+    yield NotesState.show(
+      listNotes: listNotes,
     );
   }
 
