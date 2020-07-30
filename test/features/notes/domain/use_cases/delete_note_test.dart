@@ -4,6 +4,7 @@ import 'package:flutter_pattern_templates/features/notes/domain/repositories/not
 import 'package:flutter_pattern_templates/features/notes/domain/use_cases/delete_note.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:uuid/uuid.dart';
 
 class MockNotesRepo extends Mock implements NotesRepo {}
 
@@ -17,7 +18,7 @@ void main() {
   });
 
   test("Should return success or right", () async {
-    final correctValue = Note(dbKey: 2, body: "Something", isDone: false);
+    final correctValue = Note(id: Uuid().v4(), body: "Something", isDone: false);
 
     when(mockRepo.deleteNote(correctValue)).thenAnswer((_) async => right(unit));
 

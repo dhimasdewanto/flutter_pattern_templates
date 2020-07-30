@@ -72,6 +72,9 @@ dependencies:
   # A Flutter plugin for finding commonly used locations on the filesystem.
   path_provider: ^1.6.11
 
+  # Better ID.
+  uuid: ^2.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/failures/notes_failures.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/repositories/notes_repo.dart';
 import 'package:flutter_pattern_templates/features/notes/domain/use_cases/add_note.dart';
@@ -18,23 +17,23 @@ void main() {
   });
 
   test("Should return success or right", () async {
-    final correctValue = Note(body: "Something", isDone: false);
+    const correctValue = "Something";
 
-    when(mockRepo.addNote(correctValue)).thenAnswer((_) async => right(unit));
+    when(mockRepo.addNote(any)).thenAnswer((_) async => right(unit));
 
     final result = await useCase(correctValue);
     expect(result, right(unit));
 
-    verify(mockRepo.addNote(correctValue));
+    verify(mockRepo.addNote(any));
     verifyNoMoreInteractions(mockRepo);
   });
 
   test("Should return failure because body is empty", () async {
-    final correctValue = Note(body: "", isDone: false);
+    const failValue = "";
 
-    when(mockRepo.addNote(correctValue)).thenAnswer((_) async => right(unit));
+    when(mockRepo.addNote(any)).thenAnswer((_) async => right(unit));
 
-    final result = await useCase(correctValue);
+    final result = await useCase(failValue);
     expect(result, left(const NotesFailures.emptyBody()));
 
     verifyNoMoreInteractions(mockRepo);

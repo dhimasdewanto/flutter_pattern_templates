@@ -48,7 +48,7 @@ class NotesView extends StatelessWidget {
                                 context.bloc<NotesBloc>().add(
                                       NotesEvent.checkIsDone(
                                         note: Note(
-                                          dbKey: note.dbKey,
+                                          id: note.id,
                                           body: note.body,
                                           isDone: value,
                                         ),
@@ -85,10 +85,7 @@ class NotesView extends StatelessWidget {
             onSubmitted: (value) {
               context.bloc<NotesBloc>().add(
                     NotesEvent.insert(
-                      note: Note(
-                        body: value,
-                        isDone: false,
-                      ),
+                      body: value,
                     ),
                   );
             },

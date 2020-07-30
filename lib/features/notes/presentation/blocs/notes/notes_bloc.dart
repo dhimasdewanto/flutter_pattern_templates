@@ -55,7 +55,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
         );
       },
       insert: (event) async* {
-        final result = await addNote(event.note);
+        final result = await addNote(event.body);
         yield* result.fold(
           (failure) async* {
             yield failure.when(
@@ -87,7 +87,7 @@ class NotesBloc extends Bloc<NotesEvent, NotesState> {
   Stream<NotesState> _showCheckIsDoneListNotes(_CheckIsDoneEvent event) async* {
     final listNotes = List<Note>.from((state as _ShowState).listNotes);
     final replacedIndex = listNotes.indexWhere(
-      (note) => note.dbKey == event.note.dbKey,
+      (note) => note.id == event.note.id,
     );
     listNotes.replaceRange(
       replacedIndex,

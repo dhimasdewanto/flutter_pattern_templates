@@ -6,7 +6,7 @@ abstract class NotesEvent with _$NotesEvent {
     bool isDone,
   }) = _LoadEvent;
   const factory NotesEvent.insert({
-    @required Note note,
+    @required String body,
   }) = _InsertEvent;
   const factory NotesEvent.remove({
     @required Note note,

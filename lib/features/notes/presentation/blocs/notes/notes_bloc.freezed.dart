@@ -20,9 +20,9 @@ class _$NotesEventTearOff {
   }
 
 // ignore: unused_element
-  _InsertEvent insert({@required Note note}) {
+  _InsertEvent insert({@required String body}) {
     return _InsertEvent(
-      note: note,
+      body: body,
     );
   }
 
@@ -48,14 +48,14 @@ mixin _$NotesEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result load(bool isDone),
-    @required Result insert(Note note),
+    @required Result insert(String body),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
   });
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result load(bool isDone),
-    Result insert(Note note),
+    Result insert(String body),
     Result remove(Note note),
     Result checkIsDone(Note note),
     @required Result orElse(),
@@ -147,7 +147,7 @@ class _$_LoadEvent implements _LoadEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result load(bool isDone),
-    @required Result insert(Note note),
+    @required Result insert(String body),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
   }) {
@@ -162,7 +162,7 @@ class _$_LoadEvent implements _LoadEvent {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result load(bool isDone),
-    Result insert(Note note),
+    Result insert(String body),
     Result remove(Note note),
     Result checkIsDone(Note note),
     @required Result orElse(),
@@ -217,7 +217,7 @@ abstract class _$InsertEventCopyWith<$Res> {
   factory _$InsertEventCopyWith(
           _InsertEvent value, $Res Function(_InsertEvent) then) =
       __$InsertEventCopyWithImpl<$Res>;
-  $Res call({Note note});
+  $Res call({String body});
 }
 
 class __$InsertEventCopyWithImpl<$Res> extends _$NotesEventCopyWithImpl<$Res>
@@ -231,36 +231,36 @@ class __$InsertEventCopyWithImpl<$Res> extends _$NotesEventCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object note = freezed,
+    Object body = freezed,
   }) {
     return _then(_InsertEvent(
-      note: note == freezed ? _value.note : note as Note,
+      body: body == freezed ? _value.body : body as String,
     ));
   }
 }
 
 class _$_InsertEvent implements _InsertEvent {
-  const _$_InsertEvent({@required this.note}) : assert(note != null);
+  const _$_InsertEvent({@required this.body}) : assert(body != null);
 
   @override
-  final Note note;
+  final String body;
 
   @override
   String toString() {
-    return 'NotesEvent.insert(note: $note)';
+    return 'NotesEvent.insert(body: $body)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is _InsertEvent &&
-            (identical(other.note, note) ||
-                const DeepCollectionEquality().equals(other.note, note)));
+            (identical(other.body, body) ||
+                const DeepCollectionEquality().equals(other.body, body)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(note);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(body);
 
   @override
   _$InsertEventCopyWith<_InsertEvent> get copyWith =>
@@ -270,7 +270,7 @@ class _$_InsertEvent implements _InsertEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result load(bool isDone),
-    @required Result insert(Note note),
+    @required Result insert(String body),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
   }) {
@@ -278,21 +278,21 @@ class _$_InsertEvent implements _InsertEvent {
     assert(insert != null);
     assert(remove != null);
     assert(checkIsDone != null);
-    return insert(note);
+    return insert(body);
   }
 
   @override
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result load(bool isDone),
-    Result insert(Note note),
+    Result insert(String body),
     Result remove(Note note),
     Result checkIsDone(Note note),
     @required Result orElse(),
   }) {
     assert(orElse != null);
     if (insert != null) {
-      return insert(note);
+      return insert(body);
     }
     return orElse();
   }
@@ -330,9 +330,9 @@ class _$_InsertEvent implements _InsertEvent {
 }
 
 abstract class _InsertEvent implements NotesEvent {
-  const factory _InsertEvent({@required Note note}) = _$_InsertEvent;
+  const factory _InsertEvent({@required String body}) = _$_InsertEvent;
 
-  Note get note;
+  String get body;
   _$InsertEventCopyWith<_InsertEvent> get copyWith;
 }
 
@@ -393,7 +393,7 @@ class _$_RemoveEvent implements _RemoveEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result load(bool isDone),
-    @required Result insert(Note note),
+    @required Result insert(String body),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
   }) {
@@ -408,7 +408,7 @@ class _$_RemoveEvent implements _RemoveEvent {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result load(bool isDone),
-    Result insert(Note note),
+    Result insert(String body),
     Result remove(Note note),
     Result checkIsDone(Note note),
     @required Result orElse(),
@@ -517,7 +517,7 @@ class _$_CheckIsDoneEvent implements _CheckIsDoneEvent {
   @optionalTypeArgs
   Result when<Result extends Object>({
     @required Result load(bool isDone),
-    @required Result insert(Note note),
+    @required Result insert(String body),
     @required Result remove(Note note),
     @required Result checkIsDone(Note note),
   }) {
@@ -532,7 +532,7 @@ class _$_CheckIsDoneEvent implements _CheckIsDoneEvent {
   @optionalTypeArgs
   Result maybeWhen<Result extends Object>({
     Result load(bool isDone),
-    Result insert(Note note),
+    Result insert(String body),
     Result remove(Note note),
     Result checkIsDone(Note note),
     @required Result orElse(),
