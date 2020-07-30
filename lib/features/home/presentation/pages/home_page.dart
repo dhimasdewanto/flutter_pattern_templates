@@ -47,8 +47,11 @@ class HomePage extends StatelessWidget {
             FutureBuilder<String>(
               future: _getBatteryLevelText(),
               builder: (context, snapshot) {
-                if (snapshot.hasData == false) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
                   return const Text("Loading Battery...");
+                }
+                if (snapshot.hasError) {
+                  return const Text("No battery found.");
                 }
                 return Text(snapshot.data);
               },
