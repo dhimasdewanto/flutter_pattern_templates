@@ -14,7 +14,6 @@ class NotesDaoImpl implements NotesDao {
 
   final SembastDB sembastDB;
 
-  @override
   StoreRef<int, Map<String, dynamic>> get store =>
       intMapStoreFactory.store("notes");
 

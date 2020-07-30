@@ -65,6 +65,7 @@ dependencies:
 
   # NoSQL persistent store database solution for single process io applications.
   sembast: ^2.4.7+4
+  sembast_web: ^1.2.0
 
   # A Flutter plugin for finding commonly used locations on the filesystem.
   path_provider: ^1.6.11
@@ -95,7 +96,7 @@ dev_dependencies:
 
 dependency_overrides:
   # Remove error on build_runner.
-  analyzer: '0.39.14'
+  analyzer: "0.39.14"
 
 # The following section is specific to Flutter.
 flutter:

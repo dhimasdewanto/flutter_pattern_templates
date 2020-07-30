@@ -26,9 +26,17 @@ import '../../features/notes/domain/use_cases/get_list_notes.dart';
 import '../../features/notes/domain/use_cases/get_list_notes_filter.dart';
 import '../../features/notes/presentation/blocs/notes/notes_bloc.dart';
 import '../databases/sembast_db.dart';
+import '../databases/sembast_io.dart';
+import '../databases/sembast_web.dart';
 import '../networks/connectivity_actions/request_retrier.dart';
 import '../networks/interceptors/retry_on_connection_change_interceptor.dart';
 import 'register_modules.dart';
+
+/// Environment names
+const _prod = 'prod';
+const _dev = 'dev';
+const _prod_web = 'prod_web';
+const _dev_web = 'dev_web';
 
 /// adds generated dependencies
 /// to the provided [GetIt] instance
@@ -45,7 +53,9 @@ void $initGetIt(GetIt g, {String environment}) {
       () => RequestRetrier(connectivity: g<Connectivity>(), dio: g<Dio>()));
   gh.lazySingleton<RetryOnConnectionChangeInterceptor>(() =>
       RetryOnConnectionChangeInterceptor(requestRetrier: g<RequestRetrier>()));
-  gh.lazySingleton<SembastDB>(() => SembastDB());
+  gh.lazySingleton<SembastDB>(() => SembastIO(), registerFor: {_prod, _dev});
+  gh.lazySingleton<SembastDB>(() => SembastWeb(),
+      registerFor: {_prod_web, _dev_web});
   gh.lazySingleton<GetTopHeadlines>(
       () => GetTopHeadlines(newsRepo: g<NewsRepo>()));
   gh.factory<NewsBloc>(() => NewsBloc(getTopHeadlines: g<GetTopHeadlines>()));
