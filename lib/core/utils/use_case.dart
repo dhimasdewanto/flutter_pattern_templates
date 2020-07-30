@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:meta/meta.dart';
 
-import '../failures/i_failure.dart';
+import 'i_failure.dart';
 
 /// Interface of use case.
 /// Implement this to create use case.

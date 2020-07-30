@@ -1,6 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../../core/failures/i_failure.dart';
+import '../../../../core/utils/i_failure.dart';
 
 part 'notes_failures.freezed.dart';
 

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/use_cases/use_case.dart';
+import '../../../../core/utils/use_case.dart';
 import '../entities/note.dart';
 import '../failures/notes_failures.dart';
 import '../repositories/notes_repo.dart';
