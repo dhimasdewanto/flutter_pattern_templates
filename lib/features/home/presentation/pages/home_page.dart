@@ -1,22 +1,26 @@
 import 'dart:io';
 
-import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/configs/secret_reader.dart';
-import '../../../../core/routes/router.gr.dart';
 import '../../../../core/translations/locale_keys.g.dart';
+import '../../../news/presentation/pages/news_page.dart';
+import '../../../notes/presentation/pages/notes_page.dart';
+import '../../../settings/presentation/pages/settings_page.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
 
-  static const _batteryPlatform = MethodChannel('com.dhimasdewanto.flutter_pattern_templates/battery');
+  static const _batteryPlatform =
+      MethodChannel('com.dhimasdewanto.flutter_pattern_templates/battery');
   static const _batteryMethod = "get_battery_level";
 
-  static const _activityPlatform = MethodChannel('com.dhimasdewanto.flutter_pattern_templates/activity');
+  static const _activityPlatform =
+      MethodChannel('com.dhimasdewanto.flutter_pattern_templates/activity');
   static const _activityMethod = "new_activity";
 
   @override
@@ -27,9 +31,7 @@ class HomePage extends StatelessWidget {
         actions: <Widget>[
           IconButton(
             icon: const Icon(Icons.settings),
-            onPressed: () {
-              ExtendedNavigator.of(context).pushSettingsPage();
-            },
+            onPressed: () => Get.to(const SettingsPage()),
           ),
         ],
       ),
@@ -58,18 +60,14 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             RaisedButton(
-              onPressed: () {
-                ExtendedNavigator.of(context).pushNotesPage();
-              },
+              onPressed: () => Get.to(const NotesPage()),
               child: Text(
                 tr(LocaleKeys.notes),
               ),
             ),
             const SizedBox(height: 10.0),
             RaisedButton(
-              onPressed: () {
-                ExtendedNavigator.of(context).pushNewsPage();
-              },
+              onPressed: () => Get.to(const NewsPage()),
               child: Text(
                 tr(LocaleKeys.news),
               ),
