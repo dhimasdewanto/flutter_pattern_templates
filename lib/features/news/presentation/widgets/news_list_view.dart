@@ -44,7 +44,7 @@ class NewsListView extends HookWidget {
             children: <Widget>[
               Text("$error"),
               IconButton(
-                icon: Icon(Icons.refresh),
+                icon: const Icon(Icons.refresh),
                 onPressed: pagewiseController.retry,
               ),
             ],

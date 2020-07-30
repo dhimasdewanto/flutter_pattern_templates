@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
         textTitle: tr(LocaleKeys.welcome),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
             onPressed: () {
               ExtendedNavigator.of(context).pushSettingsPage();
             },
@@ -35,7 +35,6 @@ class HomePage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text(

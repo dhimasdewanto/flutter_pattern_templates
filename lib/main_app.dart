@@ -8,7 +8,7 @@ import 'core/networks/dio_setter.dart';
 import 'core/translations/list_locales.dart';
 import 'flutter_app.dart';
 
-Future<void> mainApp(Env env) async {
+Future<void> mainApp(String env) async {
   // Always call this if the main method is asynchronous.
   WidgetsFlutterBinding.ensureInitialized();
 

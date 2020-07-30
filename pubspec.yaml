@@ -93,6 +93,10 @@ dev_dependencies:
   # This package can be used as a replacement for pedantic for those who prefer stricter rules.
   lint: ^1.2.0
 
+dependency_overrides:
+  # Remove error on build_runner.
+  analyzer: '0.39.14'
+
 # The following section is specific to Flutter.
 flutter:
   # The following line ensures that the Material Icons font is included.

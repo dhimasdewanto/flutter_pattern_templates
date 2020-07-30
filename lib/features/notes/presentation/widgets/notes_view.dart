@@ -57,7 +57,7 @@ class NotesView extends StatelessWidget {
                               },
                             ),
                             IconButton(
-                              icon: Icon(Icons.delete),
+                              icon: const Icon(Icons.delete),
                               onPressed: () {
                                 context.bloc<NotesBloc>().add(
                                       NotesEvent.remove(
