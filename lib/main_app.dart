@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'core/configs/env.dart';
 import 'core/configs/secret_reader.dart';
@@ -20,6 +21,9 @@ Future<void> mainApp(String env) async {
 
   // Load the JSON secrets config into memory.
   await SecretReader.initialize();
+
+  // Initialize Get Storage.
+  await GetStorage.init();
 
   // Configure dependency injection.
   configureDependencies(envWithWeb);

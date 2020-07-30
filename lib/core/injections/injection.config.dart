@@ -16,7 +16,7 @@ import '../../features/news/domain/repositories/news_repo.dart';
 import '../../features/news/domain/use_cases/get_top_headlines.dart';
 import '../../features/news/presentation/blocs/news/news_bloc.dart';
 import '../../features/notes/data/data_sources/notes_dao.dart';
-import '../../features/notes/data/data_sources/notes_dao_impl.dart';
+import '../../features/notes/data/data_sources/notes_dao_getx.dart';
 import '../../features/notes/data/repositories/notes_repo_impl.dart';
 import '../../features/notes/domain/repositories/notes_repo.dart';
 import '../../features/notes/domain/use_cases/add_note.dart';
@@ -49,6 +49,8 @@ void $initGetIt(GetIt g, {String environment}) {
   gh.lazySingleton<NewsNetwork>(() => NewsNetworkImpl(dio: g<Dio>()));
   gh.lazySingleton<NewsRepo>(
       () => NewsRepoImpl(newsNetworkSource: g<NewsNetwork>()));
+  gh.lazySingleton<NotesDao>(() => NotesDaoGetx());
+  gh.lazySingleton<NotesRepo>(() => NotesRepoImpl(localSource: g<NotesDao>()));
   gh.lazySingleton<RequestRetrier>(
       () => RequestRetrier(connectivity: g<Connectivity>(), dio: g<Dio>()));
   gh.lazySingleton<RetryOnConnectionChangeInterceptor>(() =>
@@ -56,17 +58,15 @@ void $initGetIt(GetIt g, {String environment}) {
   gh.lazySingleton<SembastDB>(() => SembastIO(), registerFor: {_prod, _dev});
   gh.lazySingleton<SembastDB>(() => SembastWeb(),
       registerFor: {_prod_web, _dev_web});
-  gh.lazySingleton<GetTopHeadlines>(
-      () => GetTopHeadlines(newsRepo: g<NewsRepo>()));
-  gh.factory<NewsBloc>(() => NewsBloc(getTopHeadlines: g<GetTopHeadlines>()));
-  gh.lazySingleton<NotesDao>(() => NotesDaoImpl(sembastDB: g<SembastDB>()));
-  gh.lazySingleton<NotesRepo>(() => NotesRepoImpl(localSource: g<NotesDao>()));
   gh.lazySingleton<AddNote>(() => AddNote(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<CheckIsDone>(() => CheckIsDone(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<DeleteNote>(() => DeleteNote(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<GetListNotes>(() => GetListNotes(notesRepo: g<NotesRepo>()));
   gh.lazySingleton<GetListNotesFilter>(
       () => GetListNotesFilter(notesRepo: g<NotesRepo>()));
+  gh.lazySingleton<GetTopHeadlines>(
+      () => GetTopHeadlines(newsRepo: g<NewsRepo>()));
+  gh.factory<NewsBloc>(() => NewsBloc(getTopHeadlines: g<GetTopHeadlines>()));
   gh.factory<NotesBloc>(() => NotesBloc(
         getListNotes: g<GetListNotes>(),
         getListNotesFilter: g<GetListNotesFilter>(),

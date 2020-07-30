@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_pattern_templates/features/notes/domain/entities/note.dart';
 import 'package:meta/meta.dart';
 
@@ -14,6 +16,15 @@ class NoteModel {
       body: map['body'] as String,
       isDone: map['is_done'] as bool,
     );
+  }
+
+  factory NoteModel.fromGetxMap(Map<String, dynamic> map) {
+    final note = NoteModel(
+      body: map['body'] as String,
+      isDone: map['is_done'] as bool,
+    );
+    note.dbKey = map['db_key'] as int;
+    return note;
   }
 
   factory NoteModel.fromDomain(Note note) {
@@ -35,6 +46,15 @@ class NoteModel {
   /// DON'T insert dbKey. It create it self.
   Map<String, dynamic> toDBMap() {
     return {
+      'body': body,
+      'is_done': isDone,
+    };
+  }
+
+  /// DBKey is Random Number.
+  Map<String, dynamic> toGetxMap() {
+    return {
+      'db_key': Random().nextInt(1000),
       'body': body,
       'is_done': isDone,
     };
