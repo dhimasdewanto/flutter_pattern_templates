@@ -4,7 +4,7 @@ import '../../domain/entities/note.dart';
 
 class NoteModel {
   NoteModel({
-    @required this.id,
+    this.id,
     @required this.body,
     @required this.isDone,
   });
@@ -25,7 +25,7 @@ class NoteModel {
     );
   }
 
-  final String id;
+  String id;
   final String body;
   final bool isDone;
 

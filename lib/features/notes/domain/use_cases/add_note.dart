@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:meta/meta.dart';
-import 'package:uuid/uuid.dart';
 
 import '../../../../core/utils/use_case.dart';
 import '../entities/note.dart';
@@ -18,11 +17,12 @@ class AddNote extends UseCase<Unit, String, NotesFailures> {
 
   @override
   Future<Either<NotesFailures, Unit>> execute(String body) async {
-    return notesRepo.addNote(Note(
-      id: Uuid().v4(),
-      body: body,
-      isDone: false,
-    ));
+    return notesRepo.addNote(
+      Note(
+        body: body,
+        isDone: false,
+      ),
+    );
   }
 
   @override

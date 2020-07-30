@@ -1,10 +1,10 @@
 import 'package:get_storage/get_storage.dart';
-import 'package:injectable/injectable.dart';
+import 'package:uuid/uuid.dart';
 
 import '../models/note_model.dart';
 import 'notes_dao.dart';
 
-@LazySingleton(as: NotesDao)
+// @LazySingleton(as: NotesDao)
 class NotesDaoGetx implements NotesDao {
   NotesDaoGetx() {
     _box.writeIfNull(_keyName, <Map<String, dynamic>>[]);
@@ -38,6 +38,8 @@ class NotesDaoGetx implements NotesDao {
 
   @override
   Future<void> insert(NoteModel newNote) async {
+    newNote.id ??= Uuid().v4();
+
     final listAll = _box.read<List>(_keyName);
     await _box.write(_keyName, [...listAll, newNote.toMap()]);
   }
