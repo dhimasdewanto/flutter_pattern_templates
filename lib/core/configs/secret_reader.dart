@@ -14,4 +14,6 @@ abstract class SecretReader {
   static String get appKey => _config["app_key"] as String;
 
   static String get newsApiKey => _config["news_api_key"] as String;
+
+  static String get sembastPassword => _config["sembast_password"] as String;
 }

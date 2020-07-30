@@ -66,6 +66,8 @@ dependencies:
   # NoSQL persistent store database solution for single process io applications.
   sembast: ^2.4.7+4
   sembast_web: ^1.2.0
+  encrypt: ^4.0.2
+  crypto: ^2.1.5
 
   # A Flutter plugin for finding commonly used locations on the filesystem.
   path_provider: ^1.6.11
