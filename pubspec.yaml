@@ -23,6 +23,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  
+  # Material Design Transitions.
+  animations: ^1.1.2
 
   # Allows Flutter apps to discover network connectivity and configure themselves accordingly.
   connectivity: ^0.4.9
