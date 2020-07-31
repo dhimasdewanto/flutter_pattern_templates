@@ -1,13 +1,12 @@
 import 'dart:io';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pattern_templates/core/translations/lk.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/configs/secret_reader.dart';
-import '../../../../core/translations/locale_keys.g.dart';
 import '../../../auth/presentation/blocs/auth/auth_bloc.dart';
 import '../../../auth/presentation/widgets/auth_guard.dart';
 import '../../../news/presentation/pages/news_page.dart';
@@ -31,7 +30,7 @@ class HomePage extends StatelessWidget {
     return AuthGuard(
       child: Scaffold(
         appBar: MyAppBar(
-          textTitle: tr(LocaleKeys.welcome),
+          textTitle: Lk.welcome.tr,
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.settings),
@@ -44,7 +43,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                tr(LocaleKeys.hello_world),
+                Lk.helloWorld.tr,
                 style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(height: 10.0),
@@ -66,14 +65,14 @@ class HomePage extends StatelessWidget {
               RaisedButton(
                 onPressed: () => Get.to(const NotesPage()),
                 child: Text(
-                  tr(LocaleKeys.notes),
+                  Lk.notes.tr,
                 ),
               ),
               const SizedBox(height: 10.0),
               RaisedButton(
                 onPressed: () => Get.to(const NewsPage()),
                 child: Text(
-                  tr(LocaleKeys.news),
+                  Lk.news.tr,
                 ),
               ),
               const SizedBox(height: 10.0),

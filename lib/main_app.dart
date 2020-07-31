@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -7,7 +6,6 @@ import 'core/configs/env.dart';
 import 'core/configs/secret_reader.dart';
 import 'core/injections/injection.dart';
 import 'core/networks/dio_setter.dart';
-import 'core/translations/list_locales.dart';
 import 'flutter_app.dart';
 
 Future<void> mainApp(String env) async {
@@ -37,10 +35,6 @@ Future<void> mainApp(String env) async {
 
   // Run Flutter App.
   runApp(
-    EasyLocalization(
-      path: "translations",
-      supportedLocales: ListLocales.locales,
-      child: FlutterApp(theme: theme),
-    ),
+    FlutterApp(theme: theme),
   );
 }

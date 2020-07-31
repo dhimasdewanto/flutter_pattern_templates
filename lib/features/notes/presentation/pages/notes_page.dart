@@ -1,9 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/injections/injection.dart';
-import '../../../../core/translations/locale_keys.g.dart';
+import '../../../../core/translations/lk.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
 import '../blocs/notes/notes_bloc.dart';
 import '../widgets/notes_view.dart';
@@ -22,7 +21,7 @@ class NotesPage extends StatelessWidget {
         ),
       child: Scaffold(
         appBar: MyAppBar(
-          textTitle: tr(LocaleKeys.notes),
+          textTitle: Lk.notes,
           actions: <Widget>[
             PopupMenuButton<String>(
               onSelected: (value) {

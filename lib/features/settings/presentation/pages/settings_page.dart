@@ -1,10 +1,8 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pattern_templates/core/translations/lk.dart';
+import 'package:get/get.dart';
 
-import '../../../../core/translations/list_locales.dart';
-import '../../../../core/translations/locale_keys.g.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
-import '../../data/translations/settings_locales.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key key}) : super(key: key);
@@ -13,24 +11,26 @@ class SettingsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: MyAppBar(
-        textTitle: tr(LocaleKeys.settings),
+        textTitle: Lk.settings.tr,
       ),
       body: ListView(
         padding: const EdgeInsets.all(20.0),
         children: <Widget>[
-          Text(tr(LocaleKeys.language)),
+          Text(Lk.language.tr),
           DropdownButton<Locale>(
-            value: context.locale,
-            items: ListLocales.locales.map((locale) {
-              return DropdownMenuItem<Locale>(
-                value: locale,
-                child: Text(
-                  SettingsLocales.getLanguageText(locale),
-                ),
-              );
-            }).toList(),
+            value: Get.locale,
+            items: const [
+              DropdownMenuItem<Locale>(
+                value: Locale("en", "US"),
+                child: Text("English"),
+              ),
+              DropdownMenuItem<Locale>(
+                value: Locale("id", "ID"),
+                child: Text("Bahasa Indonesia"),
+              ),
+            ],
             onChanged: (value) {
-              context.locale = value;
+              Get.updateLocale(value);
             },
           ),
         ],
