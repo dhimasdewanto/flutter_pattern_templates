@@ -10,6 +10,7 @@ analyzer:
     - '**.g.dart'
     - '**.gr.dart'
     - '**.freezed.dart'
+    - '**.config.dart'
     
   errors:
     missing_required_param: error
