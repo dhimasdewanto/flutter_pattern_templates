@@ -3,10 +3,13 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/configs/secret_reader.dart';
 import '../../../../core/translations/locale_keys.g.dart';
+import '../../../auth/presentation/blocs/auth/auth_bloc.dart';
+import '../../../auth/presentation/widgets/auth_guard.dart';
 import '../../../news/presentation/pages/news_page.dart';
 import '../../../notes/presentation/pages/notes_page.dart';
 import '../../../settings/presentation/pages/settings_page.dart';
@@ -25,61 +28,73 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(
-        textTitle: tr(LocaleKeys.welcome),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.settings),
-            onPressed: () => Get.to(const SettingsPage()),
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text(
-              tr(LocaleKeys.hello_world),
-              style: Theme.of(context).textTheme.headline5,
-            ),
-            const SizedBox(height: 10.0),
-            Text("App Key = ${SecretReader.appKey}"),
-            const SizedBox(height: 10.0),
-            FutureBuilder<String>(
-              future: _getBatteryLevelText(),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Text("Loading Battery...");
-                }
-                if (snapshot.hasError) {
-                  return const Text("No battery found.");
-                }
-                return Text(snapshot.data);
-              },
-            ),
-            const SizedBox(height: 10.0),
-            RaisedButton(
-              onPressed: () => Get.to(const NotesPage()),
-              child: Text(
-                tr(LocaleKeys.notes),
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            RaisedButton(
-              onPressed: () => Get.to(const NewsPage()),
-              child: Text(
-                tr(LocaleKeys.news),
-              ),
-            ),
-            const SizedBox(height: 10.0),
-            RaisedButton(
-              onPressed: _goToAndroidActivity,
-              child: const Text(
-                "Android Activity",
-              ),
+    return AuthGuard(
+      child: Scaffold(
+        appBar: MyAppBar(
+          textTitle: tr(LocaleKeys.welcome),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(Icons.settings),
+              onPressed: () => Get.to(const SettingsPage()),
             ),
           ],
+        ),
+        body: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              Text(
+                tr(LocaleKeys.hello_world),
+                style: Theme.of(context).textTheme.headline5,
+              ),
+              const SizedBox(height: 10.0),
+              Text("App Key = ${SecretReader.appKey}"),
+              const SizedBox(height: 10.0),
+              FutureBuilder<String>(
+                future: _getBatteryLevelText(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Text("Loading Battery...");
+                  }
+                  if (snapshot.hasError) {
+                    return const Text("No battery found.");
+                  }
+                  return Text(snapshot.data);
+                },
+              ),
+              const SizedBox(height: 10.0),
+              RaisedButton(
+                onPressed: () => Get.to(const NotesPage()),
+                child: Text(
+                  tr(LocaleKeys.notes),
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              RaisedButton(
+                onPressed: () => Get.to(const NewsPage()),
+                child: Text(
+                  tr(LocaleKeys.news),
+                ),
+              ),
+              const SizedBox(height: 10.0),
+              RaisedButton(
+                onPressed: _goToAndroidActivity,
+                child: const Text(
+                  "Android Activity",
+                ),
+              ),
+              Builder(
+                builder: (context) {
+                  return RaisedButton(
+                    onPressed: () {
+                      context.bloc<AuthBloc>().add(const AuthEvent.logout());
+                    },
+                    child: const Text("Logout"),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

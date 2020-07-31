@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/configs/app_settings.dart';
-import 'features/home/presentation/pages/home_page.dart';
+import 'features/utils/presentation/pages/initial_page.dart';
 
 class FlutterApp extends StatelessWidget {
   const FlutterApp({
@@ -21,7 +21,7 @@ class FlutterApp extends StatelessWidget {
       supportedLocales: context.supportedLocales,
       localizationsDelegates: context.localizationDelegates,
       title: AppSettings.appName,
-      home: const HomePage(),
+      home: const InitialPage(),
     );
   }
 }
