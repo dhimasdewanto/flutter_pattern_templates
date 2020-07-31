@@ -26,6 +26,7 @@ class NotesDaoGetx implements NotesDao {
 
   @override
   Future<List<NoteModel>> getAll() async {
+    await _box.initStorage;
     final listMaps = _box.read<List>(_keyName);
     return listMaps.map((map) => NoteModel.fromMap(map as Map<String, dynamic>)).toList();
   }
