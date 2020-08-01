@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/injections/injection.dart';
+import '../../../../core/utils/navigators.dart';
+import '../../../home/presentation/pages/home_page.dart';
 import '../blocs/auth/auth_bloc.dart';
+import '../pages/login_page.dart';
 
 class AuthGuard extends StatelessWidget {
   const AuthGuard({
@@ -28,9 +31,19 @@ class AuthGuard extends StatelessWidget {
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {
-              if (isRedirectToHome) {}
+              if (isRedirectToHome) {
+                pushReplacement(
+                  context: context,
+                  page: const HomePage(),
+                );
+              }
             },
-            unauthenticated: () {},
+            unauthenticated: () {
+              pushReplacement(
+                context: context,
+                page: const LoginPage(),
+              );
+            },
           );
         },
         child: child,

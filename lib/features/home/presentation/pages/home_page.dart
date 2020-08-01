@@ -4,11 +4,15 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pattern_templates/core/localization/locale_keys.g.dart';
 
 import '../../../../core/configs/secret_reader.dart';
+import '../../../../core/localization/locale_keys.g.dart';
+import '../../../../core/utils/navigators.dart';
 import '../../../auth/presentation/blocs/auth/auth_bloc.dart';
 import '../../../auth/presentation/widgets/auth_guard.dart';
+import '../../../news/presentation/pages/news_page.dart';
+import '../../../notes/presentation/pages/notes_page.dart';
+import '../../../settings/presentation/pages/settings_page.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -31,7 +35,10 @@ class HomePage extends StatelessWidget {
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.settings),
-              onPressed: () {},
+              onPressed: () => push(
+                context: context,
+                page: const SettingsPage(),
+              ),
             ),
           ],
         ),
@@ -60,14 +67,20 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 10.0),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () => push(
+                  context: context,
+                  page: const NotesPage(),
+                ),
                 child: Text(
                   tr(LocaleKeys.notes),
                 ),
               ),
               const SizedBox(height: 10.0),
               RaisedButton(
-                onPressed: () {},
+                onPressed: () => push(
+                  context: context,
+                  page: const NewsPage(),
+                ),
                 child: Text(
                   tr(LocaleKeys.news),
                 ),
