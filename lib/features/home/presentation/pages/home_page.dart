@@ -1,8 +1,10 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_pattern_templates/core/localization/locale_keys.g.dart';
 
 import '../../../../core/configs/secret_reader.dart';
 import '../../../auth/presentation/blocs/auth/auth_bloc.dart';
@@ -25,7 +27,7 @@ class HomePage extends StatelessWidget {
     return AuthGuard(
       child: Scaffold(
         appBar: MyAppBar(
-          textTitle: "Welcome",
+          textTitle: tr(LocaleKeys.welcome),
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.settings),
@@ -38,7 +40,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                "Hello World!",
+                tr(LocaleKeys.hello_world),
                 style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(height: 10.0),
@@ -59,15 +61,15 @@ class HomePage extends StatelessWidget {
               const SizedBox(height: 10.0),
               RaisedButton(
                 onPressed: () {},
-                child: const Text(
-                  "Notes",
+                child: Text(
+                  tr(LocaleKeys.notes),
                 ),
               ),
               const SizedBox(height: 10.0),
               RaisedButton(
                 onPressed: () {},
-                child: const Text(
-                  "News",
+                child: Text(
+                  tr(LocaleKeys.news),
                 ),
               ),
               const SizedBox(height: 10.0),
