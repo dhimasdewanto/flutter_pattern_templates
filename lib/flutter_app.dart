@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_pattern_templates/core/routers/router.gr.dart';
 
 import 'core/configs/app_settings.dart';
-import 'features/utils/presentation/pages/initial_page.dart';
+import 'core/routers/guards/auth_guard.dart';
 
 class FlutterApp extends StatelessWidget {
   const FlutterApp({
@@ -20,7 +22,12 @@ class FlutterApp extends StatelessWidget {
       locale: context.locale,
       theme: theme,
       title: AppSettings.appName,
-      home: const InitialPage(),
+      builder: ExtendedNavigator.builder(
+        router: Router(),
+        guards: [
+          AuthGuard(),
+        ],
+      ),
     );
   }
 }

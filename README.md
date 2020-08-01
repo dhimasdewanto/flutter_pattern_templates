@@ -14,6 +14,8 @@ Collection of best pattern and architecture for Flutter.
 
 > **Don't update gradle, because it won't build release app.**
 
+> You probably don't need [auto_route](https://pub.dev/packages/auto_route)
+
 ### Add Secret Keys
 
 ---
@@ -65,7 +67,7 @@ Collection of best pattern and architecture for Flutter.
         "key": "ctrl+alt+l",
         "command": "command-runner.run",
         "args": {
-            "command": "flutter pub run easy_localization:generate -s translations -f keys -O lib/core/translations -o locale_keys.g.dart"
+            "command": "flutter pub run easy_localization:generate -s translations -f keys -O lib/core/localization -o locale_keys.g.dart"
         }
     }
 ]
