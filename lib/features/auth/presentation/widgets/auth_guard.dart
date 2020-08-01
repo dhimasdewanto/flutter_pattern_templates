@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/injections/injection.dart';
-import '../../../home/presentation/pages/home_page.dart';
 import '../blocs/auth/auth_bloc.dart';
-import '../pages/login_page.dart';
 
 class AuthGuard extends StatelessWidget {
   const AuthGuard({
@@ -31,11 +28,9 @@ class AuthGuard extends StatelessWidget {
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {
-              if (isRedirectToHome) {
-                Get.offAll(const HomePage());
-              }
+              if (isRedirectToHome) {}
             },
-            unauthenticated: () => Get.offAll(const LoginPage()),
+            unauthenticated: () {},
           );
         },
         child: child,

@@ -3,15 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_pattern_templates/core/translations/lk.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/configs/secret_reader.dart';
 import '../../../auth/presentation/blocs/auth/auth_bloc.dart';
 import '../../../auth/presentation/widgets/auth_guard.dart';
-import '../../../news/presentation/pages/news_page.dart';
-import '../../../notes/presentation/pages/notes_page.dart';
-import '../../../settings/presentation/pages/settings_page.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -30,11 +25,11 @@ class HomePage extends StatelessWidget {
     return AuthGuard(
       child: Scaffold(
         appBar: MyAppBar(
-          textTitle: Lk.welcome.tr,
+          textTitle: "Welcome",
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.settings),
-              onPressed: () => Get.to(const SettingsPage()),
+              onPressed: () {},
             ),
           ],
         ),
@@ -43,7 +38,7 @@ class HomePage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               Text(
-                Lk.helloWorld.tr,
+                "Hello World!",
                 style: Theme.of(context).textTheme.headline5,
               ),
               const SizedBox(height: 10.0),
@@ -63,16 +58,16 @@ class HomePage extends StatelessWidget {
               ),
               const SizedBox(height: 10.0),
               RaisedButton(
-                onPressed: () => Get.to(const NotesPage()),
-                child: Text(
-                  Lk.notes.tr,
+                onPressed: () {},
+                child: const Text(
+                  "Notes",
                 ),
               ),
               const SizedBox(height: 10.0),
               RaisedButton(
-                onPressed: () => Get.to(const NewsPage()),
-                child: Text(
-                  Lk.news.tr,
+                onPressed: () {},
+                child: const Text(
+                  "News",
                 ),
               ),
               const SizedBox(height: 10.0),

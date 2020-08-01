@@ -1,5 +1,5 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 import 'core/configs/env.dart';
@@ -10,7 +10,7 @@ import 'flutter_app.dart';
 
 Future<void> mainApp(String env) async {
   var envWithWeb = env;
-  if (GetPlatform.isWeb) {
+  if (kIsWeb) {
     envWithWeb = "${env}_web";
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/injections/injection.dart';
-import '../../../../core/translations/lk.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
 import '../blocs/notes/notes_bloc.dart';
 import '../widgets/notes_view.dart';
@@ -21,7 +20,7 @@ class NotesPage extends StatelessWidget {
         ),
       child: Scaffold(
         appBar: MyAppBar(
-          textTitle: Lk.notes,
+          textTitle: "Notes",
           actions: <Widget>[
             PopupMenuButton<String>(
               onSelected: (value) {

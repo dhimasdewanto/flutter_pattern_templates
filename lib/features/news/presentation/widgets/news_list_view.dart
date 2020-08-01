@@ -2,10 +2,9 @@ import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_pagewise/flutter_pagewise.dart';
-import 'package:flutter_pattern_templates/features/utils/presentation/page_routes/shared_axis_page_route.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/configs/app_settings.dart';
+import '../../../utils/presentation/page_routes/shared_axis_page_route.dart';
 import '../../domain/entities/article.dart';
 import '../pages/news_detail_page.dart';
 import 'loading_view_builder.dart';
@@ -77,7 +76,8 @@ class NewsListView extends HookWidget {
           return Card(
             child: InkWell(
               onTap: () {
-                navigator.push(
+                Navigator.push(
+                  context,
                   SharedAxisPageRoute(
                     transitionType: SharedAxisTransitionType.scaled,
                     page: NewsDetailPage(

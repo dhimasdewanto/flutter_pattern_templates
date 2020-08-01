@@ -50,8 +50,7 @@ dependencies:
   # Annotation for package freezed.
   freezed_annotation: ^0.11.0
 
-  # MAKE FLUTTER EASIER!
-  get: ^3.4.1
+  # Get storage.
   get_storage: ^1.2.1
 
   # This is a simple Service Locator for Dart and Flutter projects.

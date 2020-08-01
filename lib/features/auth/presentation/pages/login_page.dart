@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/injections/injection.dart';
-import '../../../home/presentation/pages/home_page.dart';
 import '../blocs/auth/auth_bloc.dart';
 
 class LoginPage extends StatefulWidget {
@@ -39,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
         listener: (context, state) {
           state.maybeWhen(
             orElse: () {},
-            loggedIn: () => Get.offAll(const HomePage()),
+            loggedIn: () {},
           );
         },
         child: Scaffold(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import '../../domain/entities/article.dart';
 
@@ -21,8 +20,7 @@ class NewsDetailPage extends StatelessWidget {
         children: [
           Text(
             article.description,
-            // Get wil BUG if you change to dart/light theme.
-            style: Get.textTheme.headline5,
+            style: Theme.of(context).textTheme.headline5,
           ),
           Text(article.author),
           Text(article.content),
