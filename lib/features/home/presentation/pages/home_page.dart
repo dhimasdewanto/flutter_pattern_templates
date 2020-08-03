@@ -9,10 +9,7 @@ import 'package:flutter_pattern_templates/core/routers/router.gr.dart';
 
 import '../../../../core/configs/secret_reader.dart';
 import '../../../../core/localization/locale_keys.g.dart';
-import '../../../../core/utils/navigators.dart';
 import '../../../auth/presentation/blocs/auth/auth_bloc.dart';
-import '../../../news/presentation/pages/news_page.dart';
-import '../../../notes/presentation/pages/notes_page.dart';
 import '../../../utils/presentation/widgets/my_app_bar.dart';
 
 class HomePage extends StatelessWidget {
@@ -65,9 +62,8 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             RaisedButton(
-              onPressed: () => push(
-                context: context,
-                page: const NotesPage(),
+              onPressed: () => ExtendedNavigator.of(context).push(
+                Routes.notesPage,
               ),
               child: Text(
                 tr(LocaleKeys.notes),
@@ -75,9 +71,8 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 10.0),
             RaisedButton(
-              onPressed: () => push(
-                context: context,
-                page: const NewsPage(),
+              onPressed: () => ExtendedNavigator.of(context).push(
+                Routes.newsPage,
               ),
               child: Text(
                 tr(LocaleKeys.news),

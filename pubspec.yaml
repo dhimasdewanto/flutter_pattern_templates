@@ -105,7 +105,7 @@ dev_dependencies:
   lint: ^1.2.0
 
 dependency_overrides:
-  # Remove error on build_runner.
+  # Remove error on build_runner in Flutter beta channel.
   analyzer: "0.39.14"
 
 # The following section is specific to Flutter.

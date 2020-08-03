@@ -5,13 +5,14 @@ import '../../features/home/presentation/pages/home_page.dart';
 import '../../features/news/presentation/pages/news_page.dart';
 import '../../features/notes/presentation/pages/notes_page.dart';
 import '../../features/settings/presentation/pages/settings_page.dart';
-import 'guards/auth_guard.dart';
+import '../../features/utils/presentation/pages/initial_page.dart';
 
 @MaterialAutoRouter(
   routes: <AutoRoute>[
-    MaterialRoute(page: HomePage, initial: true),
-    MaterialRoute(page: LoginPage, guards: [AuthGuard]),
-    MaterialRoute(page: NewsPage, name: "news_page"),
+    MaterialRoute(page: InitialPage, initial: true),
+    MaterialRoute(page: HomePage),
+    MaterialRoute(page: LoginPage),
+    MaterialRoute(page: NewsPage),
     MaterialRoute(page: NotesPage),
     CustomRoute(page: SettingsPage),
   ],
