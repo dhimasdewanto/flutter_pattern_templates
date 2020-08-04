@@ -16,6 +16,9 @@ Collection of best pattern and architecture for Flutter.
 
 > You probably don't need [auto_route](https://pub.dev/packages/auto_route)
 
+> For some reason, Flutter Web can't request html response (usually json, etc),
+which mean **link preview wouldn't work** because it can't get meta tag.
+
 ### Add Secret Keys
 
 ---
