@@ -6,6 +6,7 @@ Collection of best pattern and architecture for Flutter.
 
 - [flutter_pattern_templates](#flutter_pattern_templates)
   - [WARNINGS](#warnings)
+  - [How to](#how-to)
     - [Add Secret Keys](#add-secret-keys)
     - [VSCode Better Shortcuts](#vscode-better-shortcuts)
     - [VSCode Launch Configuration](#vscode-launch-configuration)
@@ -15,10 +16,18 @@ Collection of best pattern and architecture for Flutter.
 
 ## WARNINGS
 
-> **Don't update gradle, because it won't build release app.**
-> You probably don't need [auto_route](https://pub.dev/packages/auto_route)
-> For some reason, Flutter Web can't request html response (usually json, etc),
+---
+
+- **Don't update gradle, because it won't build release app.**
+
+- You probably don't need [auto_route](https://pub.dev/packages/auto_route)
+
+- For some reason, Flutter Web can't request html response (usually json, etc),
 which mean **link preview wouldn't work** because it can't get meta tag.
+
+## How to
+
+---
 
 ### Add Secret Keys
 
@@ -156,7 +165,7 @@ flutter build apk --split-per-abi --obfuscate --split-debug-info=/flutter_patter
 
 #### Android
 
-~ If you want to add `OtherActivity` in Android native, make sure to update this code in `AndroidManifest.xml`:
+- If you want to add `OtherActivity` in Android native, make sure to update this code in `AndroidManifest.xml`:
 
 ```xml
 <activity
