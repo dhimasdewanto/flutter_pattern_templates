@@ -16,8 +16,6 @@ Collection of best pattern and architecture for Flutter.
 
 ## WARNINGS
 
----
-
 - **Don't update gradle, because it won't build release app.**
 
 - You probably don't need [auto_route](https://pub.dev/packages/auto_route)
@@ -26,8 +24,6 @@ Collection of best pattern and architecture for Flutter.
 which mean **link preview wouldn't work** because it can't get meta tag.
 
 ## How to
-
----
 
 ### Add Secret Keys
 
