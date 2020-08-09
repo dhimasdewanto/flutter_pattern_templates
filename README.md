@@ -4,18 +4,19 @@ Collection of best pattern and architecture for Flutter.
 
 ---
 
-- [Add Secret Keys](#add-secret-keys)
-- [VSCode Better Shortcuts](#vscode-better-shortcuts)
-- [VSCode Launch Configuration](#vscode-launch-configuration)
-- [Release Android App](#release-android-app)
-- [Platform Channel](#platform-channel)
+- [flutter_pattern_templates](#flutter_pattern_templates)
+  - [WARNINGS](#warnings)
+    - [Add Secret Keys](#add-secret-keys)
+    - [VSCode Better Shortcuts](#vscode-better-shortcuts)
+    - [VSCode Launch Configuration](#vscode-launch-configuration)
+    - [Release Android App](#release-android-app)
+    - [Platform Channel](#platform-channel)
+      - [Android](#android)
 
 ## WARNINGS
 
 > **Don't update gradle, because it won't build release app.**
-
 > You probably don't need [auto_route](https://pub.dev/packages/auto_route)
-
 > For some reason, Flutter Web can't request html response (usually json, etc),
 which mean **link preview wouldn't work** because it can't get meta tag.
 
@@ -72,6 +73,14 @@ which mean **link preview wouldn't work** because it can't get meta tag.
         "args": {
             "command": "flutter pub run easy_localization:generate -s translations -f keys -O lib/core/localization -o locale_keys.g.dart"
         }
+    },
+    {
+        "key": "ctrl+alt+s",
+        "command": "extension.flutterStylizer"
+    },
+    {
+        "key": "ctrl+alt+i",
+        "command": "dart-import.fix"
     }
 ]
 ```
@@ -135,7 +144,7 @@ storeFile=C:\\Users\\SOME_USER_NAME\\WHEREVER\\key.jks
 
 3. Template of build apk command:
 
-```
+```shell
 flutter build apk --split-per-abi --obfuscate --split-debug-info=/flutter_pattern_templates/v1.0.0 --target=lib/main_prod.dart
 ```
 
@@ -145,9 +154,9 @@ flutter build apk --split-per-abi --obfuscate --split-debug-info=/flutter_patter
 
 1. Read [documentation](https://flutter.dev/docs/development/platform-integration/platform-channels?tab=android-channel-kotlin-tab)
 
-##### Android
+#### Android
 
-* If you want to add `OtherActivity` in Android native, make sure to update this code in `AndroidManifest.xml`:
+~ If you want to add `OtherActivity` in Android native, make sure to update this code in `AndroidManifest.xml`:
 
 ```xml
 <activity
