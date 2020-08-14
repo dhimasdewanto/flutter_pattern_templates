@@ -3,7 +3,7 @@ include: package:lint/analysis_options.yaml
 linter:
   rules:
     parameter_assignments: true
-    sort_constructors_first: true
+    avoid_print: false
 
 analyzer:
   exclude:
@@ -13,6 +13,7 @@ analyzer:
     - '**.config.dart'
     
   errors:
+    argument_type_not_assignable: ignore
     missing_required_param: error
     parameter_assignments: error
     missing_return: error
