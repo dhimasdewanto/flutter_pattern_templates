@@ -23,6 +23,9 @@ Collection of best pattern and architecture for Flutter.
 - For some reason, Flutter Web can't request html response (usually json, etc),
 which mean **link preview wouldn't work** because it can't get meta tag.
 
+- If you using map, consider only use key based on String. 
+Don't use List as key.
+
 ## How to
 
 ### Add Secret Keys
