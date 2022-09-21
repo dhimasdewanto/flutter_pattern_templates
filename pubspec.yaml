@@ -21,81 +21,12 @@ environment:
   sdk: ">=2.18.1 <3.0.0"
 
 dependencies:
-  # Material Design Transitions.
-  animations: ^1.1.2
-
-  # AutoRoute is a declarative routing solution.
-  auto_route: ^5.0.1
-
-  # Allows Flutter apps to discover network connectivity and configure themselves accordingly.
-  connectivity: ^0.4.9
-
-  crypto: ^3.0.2
-
-  # Functional programming in Dart.
-  dartz: ^0.9.1
-
-  # A powerful Http client for Dart, which supports Interceptors,
-  # Global configuration, FormData, Request Cancellation, File downloading, Timeout etc.
-  dio: ^4.0.6
-
-  # Easy and Fast internationalization for your Flutter Apps.
-  easy_localization: ^2.3.2
-
-  encrypt: ^5.0.1
-
   flutter:
     sdk: flutter
 
-  # Flutter package that helps implement the BLoC pattern.
-  flutter_bloc: ^6.0.1
-
-  # Hooks are a new kind of object that manages a Widget life-cycles.
-  # They exist for one reason: increase the code-sharing between widgets by removing duplicates.
-  flutter_hooks: ^0.12.0
-
-  # Infinite scrolll for Flutter.
-  flutter_pagewise: ^1.2.3
-
-  # This is a simple Service Locator for Dart and Flutter projects.
-  get_it: ^4.0.4
-
-  # Get storage.
-  get_storage: ^1.2.1
-
-  # For testing purposes.
-  mockito: ^5.3.1
-
-  # A Flutter plugin for finding commonly used locations on the filesystem.
-  path_provider: ^1.6.11
-
-  # NoSQL persistent store database solution for single process io applications.
-  sembast: ^2.4.7+4
-  sembast_web: ^1.2.0
-
-  # Better ID.
-  uuid: ^3.0.6
-
 dev_dependencies:
-  # Auto route generator.
-  auto_route_generator: ^5.0.2
-
-  # A build system for Dart code generation and modular compilation.
-  build_runner: ^2.2.1
-
   flutter_test:
     sdk: flutter
-
-  # Convert model to map, etc.
-  json_serializable: ^6.4.0
-
-  # Is a hand-picked, open-source, community-driven collection of lint rules for Dart and Flutter projects.
-  # This package can be used as a replacement for pedantic for those who prefer stricter rules.
-  lint: ^1.2.0
-
-# dependency_overrides:
-#   # Remove error on build_runner in Flutter beta channel.
-#   analyzer: "0.39.14"
 
 # The following section is specific to Flutter.
 flutter:
@@ -103,5 +34,5 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  assets:
-    - translations/
+  # assets:
+  #   - translations/
