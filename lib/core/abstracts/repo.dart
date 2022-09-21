@@ -1,77 +1,36 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:fpdart/fpdart.dart';
 
-class RepoNoCondition {
-  const RepoNoCondition();
-}
+import 'failure.dart';
 
-class RepoNoType {
-  const RepoNoType();
-}
-
-/// Repo for GET method.
-abstract class RepoGet<ReturnType, Condition> {
+abstract class RepoApi<ReturnType, ParamType> {
   @protected
-  Future<Either<String, ReturnType>> processCall({
-    Condition? condition,
-  });
+  Future<Either<Failure, ReturnType>> processCall(ParamType params);
 
-  Future<Either<String, ReturnType>> call({
-    Condition? condition,
-  }) async {
-    try {
-      return await processCall(
-        condition: condition,
-      );
-    } catch (e) {
-      return left("Catch Error: $e");
-    }
+  Future<Either<Failure, ReturnType>> call(ParamType params) async {
+    final task = TaskEither.tryCatch(
+      () => processCall(params),
+      _errorToFailure,
+    );
+    final result = await task.run();
+    return result.flatMap((value) => value);
   }
 }
 
-/// Repo for POST method.
-abstract class RepoPost<ParamType, Condition> {
-  @protected
-  Future<Option<String>> processCall({
-    required ParamType data,
-    Condition? condition,
-  });
-
-  Future<Option<String>> call({
-    required ParamType data,
-    Condition? condition,
-  }) async {
-    try {
-      return await processCall(
-        data: data,
-        condition: condition,
-      );
-    } catch (e) {
-      return some("Catch Error: $e");
-    }
+Failure _errorToFailure(Object error, StackTrace stackTrace) {
+  if (error is DioError) {
+    return Failure(
+      message: error.toString(),
+      error: error,
+      stackTrace: stackTrace,
+      httpError: error,
+    );
   }
-}
 
-/// For some reason, POST method sometimes return
-/// variable value. This repository is for it.
-abstract class RepoPostReturn<ReturnType, ParamType, Condition> {
-  @protected
-  Future<Either<String, ReturnType>> processCall({
-    required ParamType data,
-    Condition? condition,
-  });
-
-  Future<Either<String, ReturnType>> call({
-    required ParamType data,
-    Condition? condition,
-  }) async {
-    try {
-      return await processCall(
-        data: data,
-        condition: condition,
-      );
-    } catch (e) {
-      return left("Catch Error: $e");
-    }
-  }
+  return Failure(
+    message: error.toString(),
+    error: error,
+    stackTrace: stackTrace,
+  );
 }
