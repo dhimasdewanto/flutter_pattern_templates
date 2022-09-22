@@ -5,8 +5,8 @@ class SourceModel {
   });
 
   factory SourceModel.fromMap(Map<String, dynamic> map) => SourceModel(
-        id: map['id'] as String,
-        name: map['name'] as String,
+        id: map['id'] as String? ?? "",
+        name: map['name'] as String? ?? "",
       );
 
   Map<String, dynamic> toMap() => {

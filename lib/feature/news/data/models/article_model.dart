@@ -20,14 +20,14 @@ class ArticleModel {
 
   factory ArticleModel.fromMap(Map<String, dynamic> map) =>
       ArticleModel(
-    source: SourceModel.fromMap(map['source'] as Map<String, dynamic>),
-    author: map['author'] as String,
-    title: map['title'] as String,
-    description: map['description'] as String,
-    url: map['url'] as String,
-    urlToImage: map['urlToImage'] as String,
-    publishedAt: DateTime.parse(map['publishedAt'] as String),
-    content: map['content'] as String,
+    source: SourceModel.fromMap(map['source'] as Map<String, dynamic>? ?? {}),
+    author: map['author'] as String? ?? "",
+    title: map['title'] as String? ?? "",
+    description: map['description'] as String? ?? "",
+    url: map['url'] as String? ?? "",
+    urlToImage: map['urlToImage'] as String? ?? "",
+    publishedAt: DateTime.tryParse(map['publishedAt'] as String) ?? DateTime.now(),
+    content: map['content'] as String? ?? "",
   );
 
   Map<String, dynamic> toMap() => {

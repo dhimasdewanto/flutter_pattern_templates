@@ -7,7 +7,7 @@ abstract class SecretReader {
   static Map<String, dynamic>? _config;
   
   static Future<void> initialize() async {
-    final configString = await rootBundle.loadString('configs/secrets.json');
+    final configString = await rootBundle.loadString('secrets.json');
     _config = json.decode(configString) as Map<String, dynamic>;
   }
 
