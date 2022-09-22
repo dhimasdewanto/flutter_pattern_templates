@@ -1,5 +1,8 @@
 import 'package:flutter/foundation.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+
+import 'failure.dart';
 
 abstract class InfiniteScrollController<Type> {
   late PagingController<int, Type> pagingController;
@@ -23,6 +26,28 @@ abstract class InfiniteScrollController<Type> {
   void dis() {
     pagingController.dispose();
     _isDispose = true;
+  }
+
+  @protected
+  void appendEitherListResult({
+    required Either<Failure, List<Type>> resultNewItems,
+    required int pageIndex,
+  }) {
+    if (_isDispose) {
+      return;
+    }
+
+    resultNewItems.fold(
+      (failure) {
+        pagingController.error = failure.message;
+      },
+      (newItems) {
+        appendItemsToPagingController(
+          newItems: newItems,
+          pageIndex: pageIndex,
+        );
+      },
+    );
   }
 
   @protected
