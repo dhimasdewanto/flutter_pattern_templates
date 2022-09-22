@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../core/abstracts/use_case.dart';
@@ -66,6 +67,12 @@ class _NewsListPageState extends State<NewsListPage> {
               child: ListTile(
                 title: Text(article.title),
                 subtitle: Text(article.description),
+                onTap: () {
+                  context.go(
+                    "/news/detail",
+                    extra: article,
+                  );
+                },
               ),
             );
           },
