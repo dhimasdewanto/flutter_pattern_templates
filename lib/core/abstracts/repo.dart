@@ -4,7 +4,7 @@ import 'package:fpdart/fpdart.dart';
 
 import 'failure.dart';
 
-abstract class RepoApi<ReturnType, ParamType> {
+abstract class Repo<ReturnType, ParamType> {
   @protected
   Future<Either<Failure, ReturnType>> processCall(ParamType params);
 

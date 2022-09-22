@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'core/configs/app_configs.dart';
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      title: 'Flutter Demo',
+      title: AppConfigs.appName,
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
